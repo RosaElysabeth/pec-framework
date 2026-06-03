@@ -10,16 +10,20 @@
 import streamlit as st
 
 def pec_url(app):
-    """URL dynamique: localhost en local, secrets.toml en cloud."""
+    """URL dynamique: localhost en local, secrets en cloud."""
     local = {'mada': 'http://localhost:8501', 'aide': 'http://localhost:8502',
              'whatif': 'http://localhost:8503', 'gen': 'http://localhost:8504'}
     try:
-        cloud = {'mada': st.secrets['urls']['mada'], 'aide': st.secrets['urls']['aide'],
-                 'whatif': st.secrets['urls']['whatif'], 'gen': st.secrets['urls']['gen']}
+        # Essai 1: st.secrets['urls']['mada'] (avec section [urls])
+        try:
+            cloud = {'mada': st.secrets['urls']['mada'], 'aide': st.secrets['urls']['aide'],
+                     'whatif': st.secrets['urls']['whatif'], 'gen': st.secrets['urls']['gen']}
+        except Exception:
+            # Essai 2: st.secrets['mada'] (sans section)
+            cloud = {'mada': st.secrets['mada'], 'aide': st.secrets['aide'],
+                     'whatif': st.secrets['whatif'], 'gen': st.secrets['gen']}
         return cloud.get(app, local.get(app, 'http://localhost:8501'))
     except Exception:
-        # Si pas de secrets, on est en local -> localhost
-        # Si sur cloud sans secrets, les boutons pointent vers localhost (a ajouter dans Settings > Secrets)
         return local.get(app, 'http://localhost:8501')
 
 import pandas as pd
