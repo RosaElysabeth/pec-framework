@@ -162,6 +162,16 @@ def load_rapport(domaine_key):
     with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
+def _load(p):
+    """Charge un .pkl avec joblib (compatible cross-version)."""
+    import warnings
+    warnings.filterwarnings('ignore', category=UserWarning)
+    warnings.filterwarnings('ignore', message='.*InconsistentVersion.*')
+    try:
+        return joblib.load(p)
+    except Exception:
+        with open(p,'rb') as f: return pickle.load(f)
+
 @st.cache_resource
 def load_models_domaine(domaine_key):
     mdir = os.path.join(MODELS_DIR, domaine_key)
@@ -169,22 +179,25 @@ def load_models_domaine(domaine_key):
     feature_cols = []
     feature_stats = {}
     scaler = None
-    if os.path.exists(os.path.join(mdir, 'feature_cols.pkl')):
-        with open(os.path.join(mdir, 'feature_cols.pkl'), 'rb') as f:
-            feature_cols = pickle.load(f)
-    if os.path.exists(os.path.join(mdir, 'feature_stats.pkl')):
-        with open(os.path.join(mdir, 'feature_stats.pkl'), 'rb') as f:
-            feature_stats = pickle.load(f)
-    if os.path.exists(os.path.join(mdir, 'scaler.pkl')):
-        with open(os.path.join(mdir, 'scaler.pkl'), 'rb') as f:
-            scaler = pickle.load(f)
+    imputer = None
+    fc_path = os.path.join(mdir, 'feature_cols.pkl')
+    if os.path.exists(fc_path):
+        feature_cols = _load(fc_path)
+    fs_path = os.path.join(mdir, 'feature_stats.pkl')
+    if os.path.exists(fs_path):
+        feature_stats = _load(fs_path)
+    sc_path = os.path.join(mdir, 'scaler.pkl')
+    if os.path.exists(sc_path):
+        scaler = _load(sc_path)
+    imp_path = os.path.join(mdir, 'imputer.pkl')
+    if os.path.exists(imp_path):
+        imputer = _load(imp_path)
     for mn in ['Ridge', 'Random_Forest', 'XGBoost', 'LightGBM', 'CatBoost', 'GradientBoosting']:
         for target_info in DOMAINES[domaine_key]['cibles']:
             path = os.path.join(mdir, f"{mn}_{target_info}.pkl")
             if os.path.exists(path):
-                with open(path, 'rb') as f:
-                    models[(mn, target_info)] = pickle.load(f)
-    return feature_cols, feature_stats, scaler, models
+                models[(mn, target_info)] = _load(path)
+    return feature_cols, feature_stats, scaler, imputer, models
 
 def load_image(path):
     if os.path.exists(path):
@@ -229,7 +242,7 @@ with st.sidebar:
 dom = DOMAINES[domaine_choisi]
 df = load_dataset(domaine_choisi)
 rapport = load_rapport(domaine_choisi)
-feature_cols, feature_stats, scaler, all_models = load_models_domaine(domaine_choisi)
+feature_cols, feature_stats, scaler, imputer, all_models = load_models_domaine(domaine_choisi)
 
 zone_col = dom['zone_col']
 annee_col = dom['annee_col']
