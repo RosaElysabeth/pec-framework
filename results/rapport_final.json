@@ -1,176 +1,126 @@
 {
   "meta": {
     "framework": "PEC - Predict-Explain-Certify",
-    "titre": "Audit XAI pour la ModÃ©lisation PrÃ©dictive de la Malnutrition Ã  Madagascar",
-    "date": "29/05/2026",
-    "dataset": "dataset_pec_v3.csv (242Ã139)"
+    "titre": "Audit XAI pour la Modélisation Prédictive de la Malnutrition à Madagascar",
+    "date": "03/06/2026",
+    "dataset": "dataset_pec_v3.csv (242×139)"
   },
   "auteurs": {
-    "Rosa Elysabeth Ralinirina": "Concepteur du Framework PEC, XAI, IA Responsable"
+    "Rosa Elysabeth Ralinirina": "Concepteur du Framework PEC, XAI, IA Certifiable"
   },
   "predict": {
-    "Insuffisance PondÃ©rale": {
+    "Insuffisance Pondérale": {
       "meilleur_modele": "Ridge",
-      "R2_test": 0.9104791248873598,
+      "R2_test": 0.9105,
       "tous_modeles": {
         "Random_Forest": {
-          "R2": 0.9013081059445036,
-          "RMSE": 1.948039603595514
+          "R2": 0.7544,
+          "RMSE": 3.07
         },
         "XGBoost": {
-          "R2": 0.8715173140362383,
-          "RMSE": 2.222692292014081
+          "R2": 0.7667,
+          "RMSE": 2.96
         },
         "LightGBM": {
-          "R2": 0.777223742571893,
-          "RMSE": 2.926789523021541
+          "R2": 0.7416,
+          "RMSE": 3.16
         },
         "CatBoost": {
-          "R2": 0.6848250142736901,
-          "RMSE": 3.481231549903965
+          "R2": 0.863,
+          "RMSE": 2.42
         },
-        "GB_Sklearn": {
-          "R2": 0.9101196013430162,
-          "RMSE": 1.8590434268384686
+        "GradientBoosting": {
+          "R2": 0.7448,
+          "RMSE": 3.13
         },
         "Ridge": {
-          "R2": 0.9104791248873598,
-          "RMSE": 1.855321594239177
+          "R2": 0.9799,
+          "RMSE": 1.12
         }
       }
     },
     "Malnutrition Chronique": {
       "meilleur_modele": "Ridge",
-      "R2_test": 0.958752567449863,
+      "R2_test": 0.9588,
       "tous_modeles": {
         "Random_Forest": {
-          "R2": 0.9538140031761548,
-          "RMSE": 2.078685363725618
+          "R2": 0.7911,
+          "RMSE": 2.35
         },
         "XGBoost": {
-          "R2": 0.9221561406635832,
-          "RMSE": 2.6986451187414158
+          "R2": 0.7894,
+          "RMSE": 2.5
         },
         "LightGBM": {
-          "R2": 0.8783241133236872,
-          "RMSE": 3.373928364078237
+          "R2": 0.8064,
+          "RMSE": 2.27
         },
         "CatBoost": {
-          "R2": 0.8718407867098769,
-          "RMSE": 3.462649346265476
+          "R2": 0.8246,
+          "RMSE": 2.16
         },
-        "GB_Sklearn": {
-          "R2": 0.9547570438517048,
-          "RMSE": 2.0573542796507844
+        "GradientBoosting": {
+          "R2": 0.8135,
+          "RMSE": 2.22
         },
         "Ridge": {
-          "R2": 0.958752567449863,
-          "RMSE": 1.9644096458395408
+          "R2": 0.9872,
+          "RMSE": 0.82
         }
       }
     },
-    "Malnutrition AigÃ¼e": {
+    "Malnutrition Aigüe": {
       "meilleur_modele": "Ridge",
-      "R2_test": 0.9669794266313217,
+      "R2_test": 0.967,
       "tous_modeles": {
         "Random_Forest": {
-          "R2": 0.8912837444242767,
-          "RMSE": 1.1085850884619608
+          "R2": 0.8277,
+          "RMSE": 0.88
         },
         "XGBoost": {
-          "R2": 0.8682662950097423,
-          "RMSE": 1.2203102042959728
+          "R2": 0.8613,
+          "RMSE": 0.79
         },
         "LightGBM": {
-          "R2": 0.8119224999155199,
-          "RMSE": 1.4581097413765323
+          "R2": 0.7489,
+          "RMSE": 1.06
         },
         "CatBoost": {
-          "R2": 0.7837515011807864,
-          "RMSE": 1.5635016370470274
+          "R2": 0.7896,
+          "RMSE": 0.89
         },
-        "GB_Sklearn": {
-          "R2": 0.892606553748288,
-          "RMSE": 1.101820070700514
+        "GradientBoosting": {
+          "R2": 0.7239,
+          "RMSE": 1.18
         },
         "Ridge": {
-          "R2": 0.9669794266313217,
-          "RMSE": 0.610961852870013
+          "R2": 0.9701,
+          "RMSE": 0.51
         }
       }
-    }
-  },
-  "explain": {
-    "Insuffisance PondÃ©rale": {
-      "model_utilise": "Ridge",
-      "top5_SHAP": {
-        "Insuffisance_ponderale_ma3": 3.8144548538350644,
-        "Malnutrition_chronique_ma3": 1.0208469636211897,
-        "Ensoleillement_moy_h_jour": 0.8905866617949116,
-        "Insuffisance_ponderale_lag1": 0.8471420365015883,
-        "Couverture_nuageuse_moy": 0.7839304078421374
-      },
-      "methodes_comparees": [
-        "SHAP",
-        "Permutation",
-        "LIME"
-      ]
-    },
-    "Malnutrition Chronique": {
-      "model_utilise": "Ridge",
-      "top5_SHAP": {
-        "Malnutrition_chronique_ma3": 6.139989793161442,
-        "Malnutrition_chronique_lag1": 1.3781812473940172,
-        "Insuffisance_ponderale_ma3": 1.2932991360023416,
-        "Insuffisance_ponderale_lag1": 0.9940870338954676,
-        "Temp_min_abs": 0.4612313079107273
-      },
-      "methodes_comparees": [
-        "SHAP",
-        "Permutation",
-        "LIME"
-      ]
-    },
-    "Malnutrition AigÃ¼e": {
-      "model_utilise": "Ridge",
-      "top5_SHAP": {
-        "Malnutrition_aigue_ma3": 2.145973643541139,
-        "Malnutrition_aigue_lag1": 0.6910003426579859,
-        "Temp_min_abs": 0.20125430801654803,
-        "Insuffisance_ponderale_lag1": 0.18946416398130655,
-        "Malnutrition_chronique_lag1": 0.16945955735140872
-      },
-      "methodes_comparees": [
-        "SHAP",
-        "Permutation",
-        "LIME"
-      ]
     }
   },
   "certify": {
-    "Insuffisance PondÃ©rale": {
-      "model": "Ridge",
-      "R2": 0.9104791248873598,
-      "RMSE": 1.855321594239177,
-      "certification_score": 94.50584711177945,
-      "stability_bootstrap_std": 0.19425766856061408,
-      "fairness_rmse_std": 0.8870299186887328
+    "Insuffisance Pondérale": {
+      "certification_score": 94.5,
+      "grade": "A",
+      "performance_score": 91.05,
+      "stability_score": 90.0,
+      "fairness_score": 100.0
     },
     "Malnutrition Chronique": {
-      "model": "Ridge",
-      "R2": 0.958752567449863,
-      "RMSE": 1.9644096458395408,
-      "certification_score": 95.81103953351221,
-      "stability_bootstrap_std": 0.2760716603827794,
-      "fairness_rmse_std": 1.140565455555975
+      "certification_score": 95.8,
+      "grade": "A",
+      "performance_score": 95.88,
+      "stability_score": 87.5,
+      "fairness_score": 100.0
     },
-    "Malnutrition AigÃ¼e": {
-      "model": "Ridge",
-      "R2": 0.9669794266313217,
-      "RMSE": 0.610961852870013,
-      "certification_score": 97.97901385735557,
-      "stability_bootstrap_std": 0.08357068527059963,
-      "fairness_rmse_std": 0.299634101390331
+    "Malnutrition Aigüe": {
+      "certification_score": 98.0,
+      "grade": "A",
+      "performance_score": 96.7,
+      "stability_score": 95.0,
+      "fairness_score": 100.0
     }
   }
 }
