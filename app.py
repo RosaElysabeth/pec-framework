@@ -256,11 +256,18 @@ pd_data=rp.get('predict',{});cd_data=rp.get('certify',{})
 
 # Load models for interactive predictions
 def _load(p):
-    """Charge un .pkl avec pickle, fallback joblib."""
+    """Charge un .pkl avec pickle, fallback joblib, tolérance versions sklearn."""
+    import warnings
+    warnings.filterwarnings('ignore', category=UserWarning)
+    warnings.filterwarnings('ignore', message='.*InconsistentVersion.*')
     try:
         with open(p,'rb') as f: return pickle.load(f)
     except Exception:
-        return joblib.load(p)
+        try:
+            return joblib.load(p)
+        except Exception:
+            st.error(f"❌ Impossible de charger `{os.path.basename(p)}`. Versions Python/scikit-learn incompatibles entre local et cloud. il faut regénérer les modèles dans l'environnement cloud.")
+            st.stop()
 
 @st.cache_resource
 def ld_models():
