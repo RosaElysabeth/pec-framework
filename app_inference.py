@@ -12,8 +12,8 @@ def pec_url(app):
     local = {'mada': 'http://localhost:8501', 'aide': 'http://localhost:8502',
              'whatif': 'http://localhost:8503', 'gen': 'http://localhost:8504'}
     try:
-        cloud = {'mada': st.secrets.urls.mada, 'aide': st.secrets.urls.aide,
-                 'whatif': st.secrets.urls.whatif, 'gen': st.secrets.urls.gen}
+        cloud = {'mada': st.secrets['urls']['mada'], 'aide': st.secrets['urls']['aide'],
+                 'whatif': st.secrets['urls']['whatif'], 'gen': st.secrets['urls']['gen']}
         return cloud.get(app, local.get(app, 'http://localhost:8501'))
     except Exception:
         return local.get(app, 'http://localhost:8501')
