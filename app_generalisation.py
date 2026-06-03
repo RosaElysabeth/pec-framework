@@ -168,15 +168,33 @@ def load_rapport(domaine_key):
     with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
+class _SklearnUnpickler(pickle.Unpickler):
+    """Unpickler qui mappe les modules internes sklearn (ex: _loss -> sklearn._loss)."""
+    def find_class(self, module, name):
+        if module.startswith('_') and not module.startswith('sklearn'):
+            mapped = 'sklearn.' + module
+            try:
+                __import__(mapped)
+            except ImportError:
+                pass
+            module = mapped
+        return super().find_class(module, name)
+
 def _load(p):
-    """Charge un .pkl avec joblib (compatible cross-version)."""
+    """Charge un .pkl avec Unpickler sklearn, fallback joblib."""
     import warnings
     warnings.filterwarnings('ignore', category=UserWarning)
     warnings.filterwarnings('ignore', message='.*InconsistentVersion.*')
     try:
-        return joblib.load(p)
+        with open(p, 'rb') as f:
+            return _SklearnUnpickler(f).load()
     except Exception:
-        with open(p,'rb') as f: return pickle.load(f)
+        try:
+            return joblib.load(p)
+        except Exception:
+            import sklearn._loss, sklearn.tree._tree
+            with open(p, 'rb') as f:
+                return pickle.load(f)
 
 @st.cache_resource
 def load_models_domaine(domaine_key):
@@ -214,7 +232,7 @@ def load_image(path):
 # SIDEBAR — UNIFORME AVEC LES 3 AUTRES PLATEFORMES
 # ============================================================================
 with st.sidebar:
-    lang = st.radio('', ['fr','en'], format_func=lambda x: 'Français' if x=='fr' else 'English', horizontal=True, key='lg')
+    lang = st.radio('🌐', ['fr','en'], format_func=lambda x: 'Français' if x=='fr' else 'English', horizontal=True, key='lg')
     is_fr = lang == 'fr'
     st.divider()
 

@@ -39,15 +39,35 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE, "data") if os.path.exists(os.path.join(BASE, "data")) else os.path.join(BASE, "..", "data")
 MODELS_DIR = os.path.join(BASE, "models") if os.path.exists(os.path.join(BASE, "models")) else os.path.join(BASE, "..", "models")
 RESULTS_DIR = os.path.join(BASE, "results") if os.path.exists(os.path.join(BASE, "results")) else os.path.join(BASE, "..", "results")
+class _SklearnUnpickler(pickle.Unpickler):
+    """Unpickler qui mappe les modules internes sklearn (ex: _loss -> sklearn._loss)."""
+    def find_class(self, module, name):
+        if module.startswith('_') and not module.startswith('sklearn'):
+            # Mapper _loss -> sklearn._loss, _tree -> sklearn.tree._tree, etc.
+            mapped = 'sklearn.' + module
+            try:
+                __import__(mapped)
+            except ImportError:
+                pass
+            module = mapped
+        return super().find_class(module, name)
+
 def _load(p):
-    """Charge un .pkl — fallback joblib si pickle échoue."""
+    """Charge un .pkl — Unpickler sklearn + fallback joblib."""
     import warnings
     warnings.filterwarnings('ignore', category=UserWarning)
     warnings.filterwarnings('ignore', message='.*InconsistentVersion.*')
     try:
-        with open(p,'rb') as f: return pickle.load(f)
+        with open(p, 'rb') as f:
+            return _SklearnUnpickler(f).load()
     except Exception:
-        return joblib.load(p)
+        try:
+            return joblib.load(p)
+        except Exception:
+            # Dernier recours: forcer l'import des modules sklearn
+            import sklearn._loss, sklearn.tree._tree
+            with open(p, 'rb') as f:
+                return pickle.load(f)
 
 
 

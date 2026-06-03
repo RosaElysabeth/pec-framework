@@ -261,19 +261,33 @@ REGS=sorted(df['Region'].unique()) if 'Region' in df.columns else []
 pd_data=rp.get('predict',{});cd_data=rp.get('certify',{})
 
 # Load models for interactive predictions
+class _SklearnUnpickler(pickle.Unpickler):
+    """Unpickler qui mappe les modules internes sklearn (ex: _loss -> sklearn._loss)."""
+    def find_class(self, module, name):
+        if module.startswith('_') and not module.startswith('sklearn'):
+            mapped = 'sklearn.' + module
+            try:
+                __import__(mapped)
+            except ImportError:
+                pass
+            module = mapped
+        return super().find_class(module, name)
+
 def _load(p):
-    """Charge un .pkl avec pickle, fallback joblib, tolérance versions sklearn."""
+    """Charge un .pkl avec Unpickler sklearn, fallback joblib."""
     import warnings
     warnings.filterwarnings('ignore', category=UserWarning)
     warnings.filterwarnings('ignore', message='.*InconsistentVersion.*')
     try:
-        with open(p,'rb') as f: return pickle.load(f)
+        with open(p, 'rb') as f:
+            return _SklearnUnpickler(f).load()
     except Exception:
         try:
             return joblib.load(p)
         except Exception:
-            st.error(f"❌ Impossible de charger `{os.path.basename(p)}`. Versions Python/scikit-learn incompatibles entre local et cloud. il faut regénérer les modèles dans l'environnement cloud.")
-            st.stop()
+            import sklearn._loss, sklearn.tree._tree
+            with open(p, 'rb') as f:
+                return pickle.load(f)
 
 @st.cache_resource
 def ld_models():
