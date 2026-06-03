@@ -41,6 +41,17 @@ DEMO_DATASETS = {
     'breast_cancer': {'name_fr':'Cancer du sein (Wisconsin)', 'name_en':'Breast Cancer (Wisconsin)', 'path':'generalisation/data/external/breast-cancer.csv', 'sep':',', 'targets':['diagnosis'], 'desc_fr':'Caract\u00e9ristiques de biopsie, objectif : classifier les tumeurs b\u00e9nignes/malignes.', 'desc_en':'Biopsy features, goal: classify benign/malignant tumors.'},
     'wine_red': {'name_fr':'Qualit\u00e9 du vin rouge (Vinho Verde)', 'name_en':'Red Wine Quality (Vinho Verde)', 'path':'generalisation/data/external/winequality-red.csv', 'sep':';', 'targets':['quality'], 'desc_fr':'Donn\u00e9es physico-chimiques de vins rouges portugais, objectif : pr\u00e9dire la qualit\u00e9.', 'desc_en':'Physicochemical data of Portuguese red wines, goal: predict quality.'},
 }
+def _load(p):
+    """Charge un .pkl — fallback joblib si pickle échoue."""
+    import warnings
+    warnings.filterwarnings('ignore', category=UserWarning)
+    warnings.filterwarnings('ignore', message='.*InconsistentVersion.*')
+    try:
+        with open(p,'rb') as f: return pickle.load(f)
+    except Exception:
+        return joblib.load(p)
+
+
 
 # ============================================================================
 # FONT AWESOME + CSS

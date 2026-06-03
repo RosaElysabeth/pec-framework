@@ -39,6 +39,17 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE, "data") if os.path.exists(os.path.join(BASE, "data")) else os.path.join(BASE, "..", "data")
 MODELS_DIR = os.path.join(BASE, "models") if os.path.exists(os.path.join(BASE, "models")) else os.path.join(BASE, "..", "models")
 RESULTS_DIR = os.path.join(BASE, "results") if os.path.exists(os.path.join(BASE, "results")) else os.path.join(BASE, "..", "results")
+def _load(p):
+    """Charge un .pkl — fallback joblib si pickle échoue."""
+    import warnings
+    warnings.filterwarnings('ignore', category=UserWarning)
+    warnings.filterwarnings('ignore', message='.*InconsistentVersion.*')
+    try:
+        with open(p,'rb') as f: return pickle.load(f)
+    except Exception:
+        return joblib.load(p)
+
+
 
 # ============================================================================
 # FONT AWESOME + CSS
