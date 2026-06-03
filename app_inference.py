@@ -20,7 +20,7 @@ def pec_url(app):
 
 import pandas as pd
 import numpy as np
-import pickle, json, os, warnings
+import pickle, joblib, json, os, warnings
 from PIL import Image
 import plotly.express as px
 import plotly.graph_objects as go
@@ -58,17 +58,17 @@ else:
 # ============================================================================
 @st.cache_resource
 def load_all():
-    with open(os.path.join(MODELS_DIR, 'meta.pkl'), 'rb') as f: meta = pickle.load(f)
-    with open(os.path.join(MODELS_DIR, 'scaler.pkl'), 'rb') as f: scaler = pickle.load(f)
-    with open(os.path.join(MODELS_DIR, 'feature_cols.pkl'), 'rb') as f: feature_cols = pickle.load(f)
-    with open(os.path.join(MODELS_DIR, 'label_encoder_region.pkl'), 'rb') as f: le = pickle.load(f)
-    with open(os.path.join(MODELS_DIR, 'feature_stats.pkl'), 'rb') as f: stats = pickle.load(f)
+    meta = _load(os.path.join(MODELS_DIR, 'meta.pkl'))
+    scaler = _load(os.path.join(MODELS_DIR, 'scaler.pkl'))
+    feature_cols = _load(os.path.join(MODELS_DIR, 'feature_cols.pkl'))
+    le = _load(os.path.join(MODELS_DIR, 'label_encoder_region.pkl'))
+    stats = _load(os.path.join(MODELS_DIR, 'feature_stats.pkl'))
     models = {}
     for mn in meta['models']:
         for target in meta['targets']:
             path = os.path.join(MODELS_DIR, f"{mn}_{target}.pkl")
             if os.path.exists(path):
-                with open(path, 'rb') as f: models[(mn, target)] = pickle.load(f)
+                models[(mn, target)] = _load(path)
     return meta, scaler, feature_cols, le, stats, models
 
 @st.cache_data

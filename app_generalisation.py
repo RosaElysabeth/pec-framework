@@ -22,7 +22,7 @@ def pec_url(app):
 
 import pandas as pd
 import numpy as np
-import pickle, json, os, warnings
+import pickle, joblib, json, os, warnings
 from PIL import Image
 import plotly.express as px
 import plotly.graph_objects as go

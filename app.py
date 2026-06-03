@@ -25,7 +25,7 @@ import plotly.express as px
 st.markdown('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">', unsafe_allow_html=True)
 import plotly.graph_objects as go
 from PIL import Image
-import json, os, warnings, pickle
+import json, os, warnings, pickle, joblib
 warnings.filterwarnings('ignore')
 
 # ============================================================================
@@ -255,19 +255,26 @@ REGS=sorted(df['Region'].unique()) if 'Region' in df.columns else []
 pd_data=rp.get('predict',{});cd_data=rp.get('certify',{})
 
 # Load models for interactive predictions
+def _load(p):
+    """Charge un .pkl avec pickle, fallback joblib."""
+    try:
+        with open(p,'rb') as f: return pickle.load(f)
+    except Exception:
+        return joblib.load(p)
+
 @st.cache_resource
 def ld_models():
-    with open(os.path.join(MODELS_DIR,'meta.pkl'),'rb') as f: meta_m=pickle.load(f)
-    with open(os.path.join(MODELS_DIR,'scaler.pkl'),'rb') as f: _scaler=pickle.load(f)
-    with open(os.path.join(MODELS_DIR,'feature_cols.pkl'),'rb') as f: _fcols=pickle.load(f)
-    with open(os.path.join(MODELS_DIR,'label_encoder_region.pkl'),'rb') as f: _le=pickle.load(f)
-    with open(os.path.join(MODELS_DIR,'feature_stats.pkl'),'rb') as f: _fstats=pickle.load(f)
+    meta_m = _load(os.path.join(MODELS_DIR,'meta.pkl'))
+    _scaler = _load(os.path.join(MODELS_DIR,'scaler.pkl'))
+    _fcols = _load(os.path.join(MODELS_DIR,'feature_cols.pkl'))
+    _le = _load(os.path.join(MODELS_DIR,'label_encoder_region.pkl'))
+    _fstats = _load(os.path.join(MODELS_DIR,'feature_stats.pkl'))
     _models={}
     for mn in meta_m['models']:
         for tgt in meta_m['targets']:
             p=os.path.join(MODELS_DIR,f"{mn}_{tgt}.pkl")
             if os.path.exists(p):
-                with open(p,'rb') as f: _models[(mn,tgt)]=pickle.load(f)
+                _models[(mn,tgt)] = _load(p)
     return _models,_scaler,_fcols,_le,_fstats
 
 models,scaler,feature_cols,le,feature_stats = ld_models()
