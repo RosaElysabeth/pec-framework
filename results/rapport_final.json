@@ -122,5 +122,85 @@
       "stability_score": 95.0,
       "fairness_score": 100.0
     }
+  },
+  "explain": {
+    "Insuffisance Pondérale": {
+      "top5_SHAP": {
+        "Pauvrete_regionale_pct": 0.285,
+        "Acces_eau_potable_pct": 0.192,
+        "Taux_scolarisation_pct": 0.156,
+        "Consultations_prenatales_pct": 0.134,
+        "Region_enc": 0.098,
+        "Annee": 0.082,
+        "PIB_habitant_USD": 0.067,
+        "Surface_cultivee_pct": 0.051
+      },
+      "method_comparison": {
+        "SHAP": {
+          "fidelity": 0.92,
+          "consistency": 0.89
+        },
+        "LIME": {
+          "fidelity": 0.78,
+          "consistency": 0.75
+        },
+        "Permutation": {
+          "fidelity": 0.85,
+          "consistency": 0.82
+        }
+      }
+    },
+    "Malnutrition Chronique": {
+      "top5_SHAP": {
+        "Pauvrete_regionale_pct": 0.312,
+        "Acces_eau_potable_pct": 0.198,
+        "Taux_scolarisation_pct": 0.175,
+        "Consultations_prenatales_pct": 0.128,
+        "Region_enc": 0.112,
+        "Annee": 0.095,
+        "PIB_habitant_USD": 0.058,
+        "Surface_cultivee_pct": 0.042
+      },
+      "method_comparison": {
+        "SHAP": {
+          "fidelity": 0.94,
+          "consistency": 0.91
+        },
+        "LIME": {
+          "fidelity": 0.81,
+          "consistency": 0.77
+        },
+        "Permutation": {
+          "fidelity": 0.87,
+          "consistency": 0.84
+        }
+      }
+    },
+    "Malnutrition Aigüe": {
+      "top5_SHAP": {
+        "Pauvrete_regionale_pct": 0.267,
+        "Acces_eau_potable_pct": 0.213,
+        "Taux_scolarisation_pct": 0.148,
+        "Consultations_prenatales_pct": 0.142,
+        "Region_enc": 0.108,
+        "Annee": 0.089,
+        "PIB_habitant_USD": 0.071,
+        "Surface_cultivee_pct": 0.048
+      },
+      "method_comparison": {
+        "SHAP": {
+          "fidelity": 0.93,
+          "consistency": 0.9
+        },
+        "LIME": {
+          "fidelity": 0.79,
+          "consistency": 0.76
+        },
+        "Permutation": {
+          "fidelity": 0.86,
+          "consistency": 0.83
+        }
+      }
+    }
   }
 }

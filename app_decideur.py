@@ -26,7 +26,7 @@ def pec_url(app):
 
 import pandas as pd
 import numpy as np
-import os, json, warnings, io
+import os, json, warnings, io, pickle, joblib
 import plotly.express as px
 import plotly.graph_objects as go
 warnings.filterwarnings('ignore')
