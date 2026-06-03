@@ -1,0 +1,222 @@
+{
+  "meta": {
+    "framework": "PEC - Predict-Explain-Certify",
+    "domaine": "Climat Asie du Sud-Est",
+    "domaine_en": "Southeast Asia Climate",
+    "date": "2026-05-30",
+    "dataset": "dataset_climat.csv",
+    "observations": 120,
+    "variables": 30,
+    "regions": 12,
+    "train_period": "2014-2021",
+    "test_period": "2022-2024"
+  },
+  "auteurs": {
+    "nom": "Rosa Elysabeth Ralinirina",
+    "orcid": "0009-0003-3048-1765"
+  },
+  "predict": {
+    "Indice_Risque_Inondation": {
+      "meilleur_modele": "Random_Forest",
+      "R2_test": 0.8893018261248543,
+      "tous_modeles": {
+        "Random_Forest": {
+          "R2": 0.8893018261248543,
+          "RMSE": 3.424816820338109,
+          "MAE": 2.3982738288139474
+        },
+        "Ridge": {
+          "R2": 0.8749359308680268,
+          "RMSE": 3.6402683264347178,
+          "MAE": 3.052772105598112
+        },
+        "GradientBoosting": {
+          "R2": 0.8814645649668338,
+          "RMSE": 3.54397964177662,
+          "MAE": 2.581247732720875
+        },
+        "XGBoost": {
+          "R2": 0.8852925754152443,
+          "RMSE": 3.4862849733861716,
+          "MAE": 2.7686839718288843
+        },
+        "LightGBM": {
+          "R2": 0.8641648477764958,
+          "RMSE": 3.793789291687452,
+          "MAE": 3.0059013696699632
+        },
+        "CatBoost": {
+          "R2": 0.8165352138348277,
+          "RMSE": 4.409034315916886,
+          "MAE": 3.2877386778372144
+        }
+      }
+    },
+    "Degats_millions_USD": {
+      "meilleur_modele": "Ridge",
+      "R2_test": 0.9622480028708108,
+      "tous_modeles": {
+        "Random_Forest": {
+          "R2": 0.9248847155714255,
+          "RMSE": 93.34736825907046,
+          "MAE": 75.39088415404034
+        },
+        "Ridge": {
+          "R2": 0.9622480028708108,
+          "RMSE": 66.17712351942633,
+          "MAE": 56.037937882130045
+        },
+        "GradientBoosting": {
+          "R2": 0.9282157517928117,
+          "RMSE": 91.25412361124727,
+          "MAE": 76.31098493898814
+        },
+        "XGBoost": {
+          "R2": 0.9096182763653872,
+          "RMSE": 102.39487732662484,
+          "MAE": 82.69317389594183
+        },
+        "LightGBM": {
+          "R2": 0.8552893937671935,
+          "RMSE": 129.56512006283646,
+          "MAE": 97.02718189454305
+        },
+        "CatBoost": {
+          "R2": 0.9053884515200398,
+          "RMSE": 104.76349914729538,
+          "MAE": 70.59793198788435
+        }
+      }
+    },
+    "Population_a_risque_M": {
+      "meilleur_modele": "Ridge",
+      "R2_test": 0.990689788665583,
+      "tous_modeles": {
+        "Random_Forest": {
+          "R2": 0.9851235860198803,
+          "RMSE": 1.1215568755927432,
+          "MAE": 0.7974031481481497
+        },
+        "Ridge": {
+          "R2": 0.990689788665583,
+          "RMSE": 0.8872621271782988,
+          "MAE": 0.7064551238350899
+        },
+        "GradientBoosting": {
+          "R2": 0.9885792622301386,
+          "RMSE": 0.9826961494868585,
+          "MAE": 0.7749387990214446
+        },
+        "XGBoost": {
+          "R2": 0.9784682793670354,
+          "RMSE": 1.3493093897451132,
+          "MAE": 0.8241375737720067
+        },
+        "LightGBM": {
+          "R2": 0.9396380132598557,
+          "RMSE": 2.259196139337994,
+          "MAE": 1.7705754921541559
+        },
+        "CatBoost": {
+          "R2": 0.9812251112349887,
+          "RMSE": 1.2599719034307713,
+          "MAE": 0.9855785539580497
+        }
+      }
+    }
+  },
+  "explain": {
+    "Indice_Risque_Inondation": {
+      "model_utilise": "Random_Forest",
+      "top5_SHAP": {
+        "ma3_Indice_Risque_Inondation": 5.308654283997213,
+        "Precipitation_max_24h_mm": 3.2200636280985777,
+        "Precipitation_annuelle_mm": 0.6448990027594198,
+        "ma3_Risque": 0.2575978402374636,
+        "Niveau_eau_moy_m": 0.25182748033315877
+      },
+      "methodes_comparees": {
+        "SHAP_nb_features": 26,
+        "top5": [
+          "ma3_Indice_Risque_Inondation",
+          "Precipitation_max_24h_mm",
+          "Precipitation_annuelle_mm",
+          "ma3_Risque",
+          "Niveau_eau_moy_m"
+        ]
+      }
+    },
+    "Degats_millions_USD": {
+      "model_utilise": "Ridge",
+      "top5_SHAP": {
+        "ma3_Degats_millions_USD": 343.1154365456463,
+        "lag1_Degats_millions_USD": 77.7667808752996,
+        "Precipitation_max_24h_mm": 45.18605010756211,
+        "ma3_Indice_Risque_Inondation": 40.68211667159502,
+        "lag1_Population_a_risque_M": 32.023908493453774
+      },
+      "methodes_comparees": {
+        "SHAP_nb_features": 26,
+        "top5": [
+          "ma3_Degats_millions_USD",
+          "lag1_Degats_millions_USD",
+          "Precipitation_max_24h_mm",
+          "ma3_Indice_Risque_Inondation",
+          "lag1_Population_a_risque_M"
+        ]
+      }
+    },
+    "Population_a_risque_M": {
+      "model_utilise": "Ridge",
+      "top5_SHAP": {
+        "ma3_Population_a_risque_M": 2.9334735777299583,
+        "lag1_Population_a_risque_M": 1.9562374535280256,
+        "ma3_Degats_millions_USD": 0.7133629848935202,
+        "Qualite_construction_idx": 0.6867230152184729,
+        "Alerte_precoce_idx": 0.5728707933700156
+      },
+      "methodes_comparees": {
+        "SHAP_nb_features": 26,
+        "top5": [
+          "ma3_Population_a_risque_M",
+          "lag1_Population_a_risque_M",
+          "ma3_Degats_millions_USD",
+          "Qualite_construction_idx",
+          "Alerte_precoce_idx"
+        ]
+      }
+    }
+  },
+  "certify": {
+    "Indice_Risque_Inondation": {
+      "model": "Random_Forest",
+      "R2_test": 0.8893018261248543,
+      "RMSE": 0.8893018261248543,
+      "certification_score": 89.63348922378594,
+      "performance_score": 88.93018261248542,
+      "stability_score": 87.66767643384073,
+      "grade": "B",
+      "n_bootstrap": 100
+    },
+    "Degats_millions_USD": {
+      "model": "Ridge",
+      "R2_test": 0.9622480028708108,
+      "RMSE": 0.9622480028708108,
+      "certification_score": 96.45475766192305,
+      "performance_score": 96.22480028708108,
+      "stability_score": 95.6843085872509,
+      "grade": "A",
+      "n_bootstrap": 100
+    },
+    "Population_a_risque_M": {
+      "model": "Ridge",
+      "R2_test": 0.990689788665583,
+      "RMSE": 0.990689788665583,
+      "certification_score": 99.16692908637825,
+      "performance_score": 99.0689788665583,
+      "stability_score": 98.99895831342492,
+      "grade": "A",
+      "n_bootstrap": 100
+    }
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "meta": {
+    "framework": "PEC - Predict-Explain-Certify",
+    "domaine": "Santé Afrique de l'Est",
+    "domaine_en": "East Africa Health",
+    "date": "2026-05-30",
+    "dataset": "dataset_sante.csv",
+    "observations": 140,
+    "variables": 31,
+    "regions": 14,
+    "train_period": "2013-2020",
+    "test_period": "2021-2023"
+  },
+  "auteurs": {
+    "nom": "Rosa Elysabeth Ralinirina",
+    "orcid": "0009-0003-3048-1765"
+  },
+  "predict": {
+    "Mortalite_infantile_p1000": {
+      "meilleur_modele": "Ridge",
+      "R2_test": 0.9743834566943734,
+      "tous_modeles": {
+        "Random_Forest": {
+          "R2": 0.9722576189155231,
+          "RMSE": 4.054601772755442,
+          "MAE": 3.079651904761909
+        },
+        "Ridge": {
+          "R2": 0.9743834566943734,
+          "RMSE": 3.8961583749436954,
+          "MAE": 3.0396998490149065
+        },
+        "GradientBoosting": {
+          "R2": 0.9621951109102413,
+          "RMSE": 4.733150604034849,
+          "MAE": 3.603145164792938
+        },
+        "XGBoost": {
+          "R2": 0.965325859075175,
+          "RMSE": 4.532931897811858,
+          "MAE": 3.4757246848515098
+        },
+        "LightGBM": {
+          "R2": 0.9580310916041201,
+          "RMSE": 4.98700927655551,
+          "MAE": 4.280237225874738
+        },
+        "CatBoost": {
+          "R2": 0.9521357167273794,
+          "RMSE": 5.325766473687943,
+          "MAE": 3.997669975459012
+        }
+      }
+    },
+    "Vaccination_complete_pct": {
+      "meilleur_modele": "Ridge",
+      "R2_test": 0.9875706265481077,
+      "tous_modeles": {
+        "Random_Forest": {
+          "R2": 0.9832361131977576,
+          "RMSE": 2.6264352989467676,
+          "MAE": 1.8552297619047684
+        },
+        "Ridge": {
+          "R2": 0.9875706265481077,
+          "RMSE": 2.2615383949177863,
+          "MAE": 1.7985704037603931
+        },
+        "GradientBoosting": {
+          "R2": 0.9774326129242389,
+          "RMSE": 3.0473334987607226,
+          "MAE": 2.069330301502324
+        },
+        "XGBoost": {
+          "R2": 0.9767016477800191,
+          "RMSE": 3.0962922810936697,
+          "MAE": 2.1167883609590072
+        },
+        "LightGBM": {
+          "R2": 0.9668892973136259,
+          "RMSE": 3.6911657346826128,
+          "MAE": 2.752064604429333
+        },
+        "CatBoost": {
+          "R2": 0.9777388668467357,
+          "RMSE": 3.0265857327753625,
+          "MAE": 2.3623352400655553
+        }
+      }
+    },
+    "Accouchements_qualified_pct": {
+      "meilleur_modele": "Ridge",
+      "R2_test": 0.9909090605420923,
+      "tous_modeles": {
+        "Random_Forest": {
+          "R2": 0.9895463128808323,
+          "RMSE": 2.269773300878512,
+          "MAE": 1.706257142857139
+        },
+        "Ridge": {
+          "R2": 0.9909090605420923,
+          "RMSE": 2.116664944372878,
+          "MAE": 1.688008003192372
+        },
+        "GradientBoosting": {
+          "R2": 0.9775127869260755,
+          "RMSE": 3.32901346617353,
+          "MAE": 2.265265309779222
+        },
+        "XGBoost": {
+          "R2": 0.9895784388698032,
+          "RMSE": 2.266282914166017,
+          "MAE": 1.6417657761346722
+        },
+        "LightGBM": {
+          "R2": 0.9871006567529924,
+          "RMSE": 2.5213406985178564,
+          "MAE": 1.9997489456638262
+        },
+        "CatBoost": {
+          "R2": 0.9796229281107263,
+          "RMSE": 3.16897361487441,
+          "MAE": 2.1770130847279097
+        }
+      }
+    }
+  },
+  "explain": {
+    "Mortalite_infantile_p1000": {
+      "model_utilise": "Ridge",
+      "top5_SHAP": {
+        "ma3_Mortalite": 9.978222183968805,
+        "Couverture_vaccinale_pct": 2.1744669833711856,
+        "ma3_Accouchements": 2.099997082857819,
+        "ma3_Accouchements_qualified_pct": 2.099997082857655,
+        "lag1_Mortalite": 1.6855936607399915
+      },
+      "methodes_comparees": {
+        "SHAP_nb_features": 27,
+        "top5": [
+          "ma3_Mortalite",
+          "Couverture_vaccinale_pct",
+          "ma3_Accouchements",
+          "ma3_Accouchements_qualified_pct",
+          "lag1_Mortalite"
+        ]
+      }
+    },
+    "Vaccination_complete_pct": {
+      "model_utilise": "Ridge",
+      "top5_SHAP": {
+        "ma3_Vaccination": 5.770121529974215,
+        "ma3_Vaccination_complete_pct": 5.77012152997398,
+        "ma3_Mortalite": 2.065633691317906,
+        "Nutrition_infantile_pct": 1.9797669745247017,
+        "ma3_Accouchements": 1.267931467577447
+      },
+      "methodes_comparees": {
+        "SHAP_nb_features": 27,
+        "top5": [
+          "ma3_Vaccination",
+          "ma3_Vaccination_complete_pct",
+          "ma3_Mortalite",
+          "Nutrition_infantile_pct",
+          "ma3_Accouchements"
+        ]
+      }
+    },
+    "Accouchements_qualified_pct": {
+      "model_utilise": "Ridge",
+      "top5_SHAP": {
+        "ma3_Accouchements": 6.800103424913573,
+        "ma3_Accouchements_qualified_pct": 6.8001034249134,
+        "ma3_Mortalite": 2.906308157486456,
+        "lag1_Mortalite": 1.284892925748109,
+        "Eau_potable_pct": 1.2238192190335142
+      },
+      "methodes_comparees": {
+        "SHAP_nb_features": 27,
+        "top5": [
+          "ma3_Accouchements",
+          "ma3_Accouchements_qualified_pct",
+          "ma3_Mortalite",
+          "lag1_Mortalite",
+          "Eau_potable_pct"
+        ]
+      }
+    }
+  },
+  "certify": {
+    "Mortalite_infantile_p1000": {
+      "model": "Ridge",
+      "R2_test": 0.9743834566943734,
+      "RMSE": 0.9743834566943734,
+      "certification_score": 97.74836343622252,
+      "performance_score": 97.43834566943734,
+      "stability_score": 97.36940389153413,
+      "grade": "A",
+      "n_bootstrap": 100
+    },
+    "Vaccination_complete_pct": {
+      "model": "Ridge",
+      "R2_test": 0.9875706265481077,
+      "RMSE": 0.9875706265481077,
+      "certification_score": 98.94921688413979,
+      "performance_score": 98.75706265481077,
+      "stability_score": 98.79356688396916,
+      "grade": "A",
+      "n_bootstrap": 100
+    },
+    "Accouchements_qualified_pct": {
+      "model": "Ridge",
+      "R2_test": 0.9909090605420923,
+      "RMSE": 0.9909090605420923,
+      "certification_score": 99.22231908053732,
+      "performance_score": 99.09090605420923,
+      "stability_score": 99.0670523760841,
+      "grade": "A",
+      "n_bootstrap": 100
+    }
+  }
+}

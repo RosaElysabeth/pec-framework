@@ -1,0 +1,92 @@
+{
+  "TARGET_VARIABLES": {
+    "Insuffisance_ponderale": "Taux d'insuffisance ponderale chez les 0-59 mois (%) - ONN/ENSOMD",
+    "Malnutrition_chronique": "Taux de retard de croissance (malnutrition chronique) chez les 0-59 mois (%) - ONN/ENSOMD",
+    "Malnutrition_aigue": "Taux d'emaciation (malnutrition aigue) chez les 0-59 mois (%) - ONN/ENSOMD"
+  },
+  "METEOROLOGIQUES": {
+    "Temp_max_moy": "Temperature maximale moyenne annuelle (C) - 42 stations meteo",
+    "Temp_max_abs": "Temperature maximale absolue annuelle (C)",
+    "Temp_min_moy": "Temperature minimale moyenne annuelle (C)",
+    "Temp_min_abs": "Temperature minimale absolue annuelle (C)",
+    "Precipitation_annuelle_mm": "Precipitations totales annuelles (mm)",
+    "Precipitation_max_jour_mm": "Precipitation maximale journaliere (mm)",
+    "Humidite_max_moy": "Humidite maximale moyenne (%)",
+    "Vent_max_kmh": "Vent maximal annuel (km/h)",
+    "Vent_moy_kmh": "Vent moyen annuel (km/h)",
+    "Pression_max_moy": "Pression atmospherique maximale moyenne (mbar)",
+    "Couverture_nuageuse_moy": "Couverture nuageuse moyenne (%)",
+    "UV_moy": "Indice UV moyen",
+    "Ensoleillement_total_h": "Ensoleillement total annuel (heures)",
+    "Ensoleillement_moy_h_jour": "Ensoleillement moyen par jour (heures)",
+    "Nb_jours_pluie": "Nombre de jours de pluie par an",
+    "Nb_jours_chaud": "Nombre de jours avec Tmax > 35C",
+    "Precip_saison_cyclonique_mm": "Precipitations saison cyclonique Nov-Mar (mm)",
+    "Vent_max_saison_cyclonique": "Vent maximal saison cyclonique Nov-Mar (km/h)",
+    "Nb_jours_vent_fort_cyclone": "Nombre de jours avec vent > 50 km/h en saison cyclonique",
+    "Precip_saison_seche_mm": "Precipitations saison seche Mai-Oct (mm)",
+    "Temp_max_seche": "Temperature maximale moyenne saison seche (C)"
+  },
+  "CYCLONES": {
+    "Cycl_nbre_cyclones": "Nombre de cyclones par an (BNGRC/EM-DAT)",
+    "Cycl_sinistres_total": "Nombre total de sinistres cycloniques",
+    "Cycl_decedes_total": "Nombre total de deces dus aux cyclones",
+    "Cycl_max_categorie_Saffir": "Categorie maximale Saffir-Simpson (1-5)"
+  },
+  "MACROECONOMIE": {
+    "Croissance_PIB_pct": "Croissance du PIB reel (%) - INSTAT",
+    "Inflation_moy_pct": "Inflation moyenne annuelle (%) - INSTAT",
+    "Chomage_national_pct": "Taux de chomage national (%) - EPM/RGPH-3",
+    "Pauvrete_national_pct": "Taux de pauvrete national (%) - EPM",
+    "PIB_Agriculture_MrdAr": "Valeur Ajoutee Brute Agriculture (Milliards Ariary) - INSTAT",
+    "Part_Agriculture_PIB_pct": "Part de l'agriculture dans le PIB (%)",
+    "PIB_Agriculture_croissance_pct": "Croissance de la VAB agriculture (%)"
+  },
+  "MARCHE_DU_TRAVAIL": {
+    "Chomage_2010_pct": "Taux de chomage regional 2010 (%) - EPM",
+    "Chomage_2012_pct": "Taux de chomage regional 2012 (%) - EPM",
+    "Sous_emploi_inadequat_2012_pct": "Taux d'emplois inadquats regionaux 2012 (%) - EPM",
+    "Sous_emploi_duree_2012_pct": "Sous-emploi lie a la duree du travail 2012 (%) - EPM"
+  },
+  "DEMOGRAPHIE": {
+    "Pop_rgph3_2018": "Population RGPH-3 2018 par region",
+    "Pop_estimee": "Population estimee par annee et region (projection INSTAT)",
+    "Superficie_km2": "Superficie de la region (km2)",
+    "Densite_pop": "Densite de population (hab/km2)"
+  },
+  "AGRICULTURE": {
+    "Production_riz_paddy_tonnes": "Production de riz paddy par region (tonnes) - MINAGRI",
+    "Production_cafe_tonnes": "Production nationale de cafe (tonnes)",
+    "Import_miel_tons": "Import national de miel (tonnes)",
+    "Export_miel_tons": "Export national de miel (tonnes)"
+  },
+  "HYDROLOGIE": {
+    "Pluie_APIPA_mm": "Precipitations totales station APIPA (mm)",
+    "Pluie_APIPA_max_jour_mm": "Precipitation maximale journaliere APIPA (mm)",
+    "Debit_max_APIPA_m3s": "Debit maximal rivieres APIPA (m3/s)",
+    "Debit_moy_APIPA_m3s": "Debit moyen rivieres APIPA (m3/s)"
+  },
+  "PRIX alimentation": {
+    "Cout_alimentation_saine_PPA": "Cout d'une alimentation saine (PPP$/personne/jour) - FAO",
+    "Cout_legumes_PPA": "Cout des legumes (PPP$) - FAO",
+    "Cout_fruits_PPA": "Cout des fruits (PPP$) - FAO"
+  },
+  "VARIABLES_DERIVEES": {
+    "Annee_sin": "Encodage sinusoisdal de l'annee (cycle 11 ans)",
+    "Annee_cos": "Encodage cosinusoisdal de l'annee",
+    "Insuffisance_ponderale_lag1": "Valeur retard d'un an",
+    "Malnutrition_chronique_lag1": "Valeur retard d'un an",
+    "Malnutrition_aigue_lag1": "Valeur retard d'un an",
+    "Insuffisance_ponderale_delta": "Variation annuelle",
+    "Malnutrition_chronique_delta": "Variation annuelle",
+    "Malnutrition_aigue_delta": "Variation annuelle",
+    "Insuffisance_ponderale_ma3": "Moyenne mobile 3 ans",
+    "Malnutrition_chronique_ma3": "Moyenne mobile 3 ans",
+    "Malnutrition_aigue_ma3": "Moyenne mobile 3 ans",
+    "Insuffisance_ponderale_moy_region": "Moyenne regionale historique",
+    "Insuffisance_ponderale_std_region": "Ecart-type regional historique",
+    "Stress_thermique": "Indice de stress thermique (Tmax/Precip/1000)",
+    "Amplitude_thermique": "Amplitude thermique (Tmax - Tmin)",
+    "Indice_vuln_cyclone": "Indice composite de vulnerabilite cyclonique"
+  }
+}

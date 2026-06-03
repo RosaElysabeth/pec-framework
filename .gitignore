@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Environnement
+.env
+.venv/
+venv/
+
+# Temporaires CatBoost
+catboost_info/
+generalisation/catboost_info/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Scripts utilitaires internes (développement)
+fix_colgroups.py
+fix_training.py
+rewrite_scenarios.py
+rewrite_scenarios2.py
+scenarios_new.py
+update_review.py
+reviewer_agents.py
+generate_demo_pdf.py
+deploy_cloud.sh
+pec_framework_main.py
+RAPPORT_PEC.md
+train_models.py
+
+# Anciens scripts de lancement (remplacés par lancer_apps.bat)
+lancer_app.bat
+lancer_pec.bat
+
+# Docker (non utilisé pour Streamlit Cloud)
+Dockerfile
+docker-compose.yml
+
+# PDF générés
+*.pdf
+
+# Autres
+nul
+notebooklm_content.json

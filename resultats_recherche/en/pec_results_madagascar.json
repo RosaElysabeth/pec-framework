@@ -1,0 +1,305 @@
+{
+  "title": "PEC Framework Results",
+  "author": "Rosa Elysabeth Ralinirina",
+  "orcid": "0009-0003-3048-1765",
+  "data": {
+    "observations": 242,
+    "variables": 139,
+    "regions": 22,
+    "years": "2012-2022"
+  },
+  "targets": {
+    "Underweight": {
+      "R2": 0.9105,
+      "certification": 94.5,
+      "grade": "A",
+      "best_model": "Ridge",
+      "national_average": 25.6,
+      "most_affected_region": "Vakinankaratra",
+      "max_value": 36.9,
+      "least_affected_region": "Diana",
+      "min_value": 15.0,
+      "regional_gap": 21.9,
+      "interpretation": "For Underweight, the Ridge model achieves R²=0.9105 with a certification score of 94.5/100 (Grade A). The most affected region is Vakinankaratra (36.9%) and the least affected is Diana (15.0%). The 21.9-point regional gap highlights geographic inequalities.",
+      "discussion": "The strong performance of the Ridge model (R²=0.9105) confirms that socio-economic, climatic, and health variables effectively explain underweight in Madagascar. The certification score of 94.5/100 validates the system reliability for operational use by UNICEF decision-makers."
+    },
+    "Chronic Malnutrition": {
+      "R2": 0.9588,
+      "certification": 95.8,
+      "grade": "A",
+      "best_model": "Ridge",
+      "national_average": 40.4,
+      "most_affected_region": "Vakinankaratra",
+      "max_value": 58.0,
+      "least_affected_region": "Diana",
+      "min_value": 25.6,
+      "regional_gap": 32.4,
+      "interpretation": "For Chronic Malnutrition, the Ridge model achieves R²=0.9588 with a certification score of 95.8/100 (Grade A). The most affected region is Vakinankaratra (58.0%) and the least affected is Diana (25.6%). The 32.4-point regional gap highlights geographic inequalities.",
+      "discussion": "The strong performance of the Ridge model (R²=0.9588) confirms that socio-economic, climatic, and health variables effectively explain chronic malnutrition in Madagascar. The certification score of 95.8/100 validates the system reliability for operational use by UNICEF decision-makers."
+    },
+    "Acute Malnutrition": {
+      "R2": 0.967,
+      "certification": 98.0,
+      "grade": "A",
+      "best_model": "Ridge",
+      "national_average": 7.3,
+      "most_affected_region": "Vatovavy Fitovinany",
+      "max_value": 11.0,
+      "least_affected_region": "Haute Matsiatra",
+      "min_value": 4.1,
+      "regional_gap": 6.9,
+      "interpretation": "For Acute Malnutrition, the Ridge model achieves R²=0.9670 with a certification score of 98.0/100 (Grade A). The most affected region is Vatovavy Fitovinany (11.0%) and the least affected is Haute Matsiatra (4.1%). The 6.9-point regional gap highlights geographic inequalities.",
+      "discussion": "The strong performance of the Ridge model (R²=0.9670) confirms that socio-economic, climatic, and health variables effectively explain acute malnutrition in Madagascar. The certification score of 98.0/100 validates the system reliability for operational use by UNICEF decision-makers."
+    }
+  },
+  "model_comparison": [
+    {
+      "target": "Insuffisance Pondérale",
+      "model": "Ridge",
+      "R2": 0.9105,
+      "RMSE": 1.8553,
+      "MAE": 1.4654
+    },
+    {
+      "target": "Insuffisance Pondérale",
+      "model": "GB_Sklearn",
+      "R2": 0.9101,
+      "RMSE": 1.859,
+      "MAE": 1.3217
+    },
+    {
+      "target": "Insuffisance Pondérale",
+      "model": "Random_Forest",
+      "R2": 0.9013,
+      "RMSE": 1.948,
+      "MAE": 1.3998
+    },
+    {
+      "target": "Insuffisance Pondérale",
+      "model": "XGBoost",
+      "R2": 0.8715,
+      "RMSE": 2.2227,
+      "MAE": 1.4868
+    },
+    {
+      "target": "Insuffisance Pondérale",
+      "model": "LightGBM",
+      "R2": 0.7772,
+      "RMSE": 2.9268,
+      "MAE": 2.239
+    },
+    {
+      "target": "Insuffisance Pondérale",
+      "model": "CatBoost",
+      "R2": 0.6848,
+      "RMSE": 3.4812,
+      "MAE": 2.7442
+    },
+    {
+      "target": "Malnutrition Aigüe",
+      "model": "Ridge",
+      "R2": 0.967,
+      "RMSE": 0.611,
+      "MAE": 0.4311
+    },
+    {
+      "target": "Malnutrition Aigüe",
+      "model": "GB_Sklearn",
+      "R2": 0.8926,
+      "RMSE": 1.1018,
+      "MAE": 0.7705
+    },
+    {
+      "target": "Malnutrition Aigüe",
+      "model": "Random_Forest",
+      "R2": 0.8913,
+      "RMSE": 1.1086,
+      "MAE": 0.7744
+    },
+    {
+      "target": "Malnutrition Aigüe",
+      "model": "XGBoost",
+      "R2": 0.8683,
+      "RMSE": 1.2203,
+      "MAE": 0.8379
+    },
+    {
+      "target": "Malnutrition Aigüe",
+      "model": "LightGBM",
+      "R2": 0.8119,
+      "RMSE": 1.4581,
+      "MAE": 1.1152
+    },
+    {
+      "target": "Malnutrition Aigüe",
+      "model": "CatBoost",
+      "R2": 0.7838,
+      "RMSE": 1.5635,
+      "MAE": 1.1445
+    },
+    {
+      "target": "Malnutrition Chronique",
+      "model": "Ridge",
+      "R2": 0.9588,
+      "RMSE": 1.9644,
+      "MAE": 1.283
+    },
+    {
+      "target": "Malnutrition Chronique",
+      "model": "GB_Sklearn",
+      "R2": 0.9548,
+      "RMSE": 2.0574,
+      "MAE": 1.4415
+    },
+    {
+      "target": "Malnutrition Chronique",
+      "model": "Random_Forest",
+      "R2": 0.9538,
+      "RMSE": 2.0787,
+      "MAE": 1.3597
+    },
+    {
+      "target": "Malnutrition Chronique",
+      "model": "XGBoost",
+      "R2": 0.9222,
+      "RMSE": 2.6986,
+      "MAE": 1.6606
+    },
+    {
+      "target": "Malnutrition Chronique",
+      "model": "LightGBM",
+      "R2": 0.8783,
+      "RMSE": 3.3739,
+      "MAE": 2.4254
+    },
+    {
+      "target": "Malnutrition Chronique",
+      "model": "CatBoost",
+      "R2": 0.8718,
+      "RMSE": 3.4626,
+      "MAE": 2.6318
+    }
+  ],
+  "generalisation": {
+    "climat": {
+      "Indice_Risque_Inondation": {
+        "R2": 0.8893,
+        "certification": 89.6,
+        "best_model": "Random_Forest"
+      },
+      "Degats_millions_USD": {
+        "R2": 0.9622,
+        "certification": 96.5,
+        "best_model": "Ridge"
+      },
+      "Population_a_risque_M": {
+        "R2": 0.9907,
+        "certification": 99.2,
+        "best_model": "Ridge"
+      }
+    },
+    "fintech": {
+      "Taux_Defaut_pct": {
+        "R2": 0.8518,
+        "certification": 87.4,
+        "best_model": "CatBoost"
+      },
+      "Ratio_NPL_pct": {
+        "R2": 0.8708,
+        "certification": 88.9,
+        "best_model": "CatBoost"
+      },
+      "Penetration_Fintech_pct": {
+        "R2": 0.9873,
+        "certification": 98.9,
+        "best_model": "Ridge"
+      }
+    },
+    "sante": {
+      "Mortalite_infantile_p1000": {
+        "R2": 0.9744,
+        "certification": 97.7,
+        "best_model": "Ridge"
+      },
+      "Vaccination_complete_pct": {
+        "R2": 0.9876,
+        "certification": 98.9,
+        "best_model": "Ridge"
+      },
+      "Accouchements_qualified_pct": {
+        "R2": 0.9909,
+        "certification": 99.2,
+        "best_model": "Ridge"
+      }
+    }
+  },
+  "whatif_scenarios": {
+    "description": "The What-If platform (8502) simulates 8 prospective scenarios by region and horizon (2026-2035).",
+    "innovation": "Computed features (lag1, ma3, delta) are iteratively updated at each year. Cyclic encoding Annee_sin/cos (period=11). Projected status quo serves as baseline.",
+    "scenarios": [
+      {
+        "name": "Status quo",
+        "variables": "None",
+        "impact": "Baseline"
+      },
+      {
+        "name": "Climate improvement",
+        "variables": "Precipitation_annuelle_mm +10%, Temp_max_moy -0.5C, Precip_saison_cyclonique_mm +10%, Precip_saison_seche_mm +10%, Temp_min_moy -0.3C, Humidite_max_moy +2%",
+        "impact": "Malnutrition decrease"
+      },
+      {
+        "name": "Climate degradation",
+        "variables": "Precipitation_annuelle_mm -20%, Temp_max_moy +1C, Precip_saison_cyclonique_mm -20%, Precip_saison_seche_mm -20%, Temp_min_moy +0.5C, Humidite_max_moy -3%",
+        "impact": "Malnutrition increase"
+      },
+      {
+        "name": "Poverty reduction",
+        "variables": "Pauvrete_region_2021_pct -10 pts, Pauvrete_region_est_pct -10 pts",
+        "impact": "Malnutrition decrease"
+      },
+      {
+        "name": "Poverty increase",
+        "variables": "Pauvrete_region_2021_pct +10 pts, Pauvrete_region_est_pct +10 pts",
+        "impact": "Malnutrition increase"
+      },
+      {
+        "name": "Health improvement",
+        "variables": "Acces_eau_potable_pct +15%, Assainissement_ameliore_pct +10%, Couverture_sanitaire_CSB2_10000hab +0.3",
+        "impact": "Acute malnutrition decrease"
+      },
+      {
+        "name": "Combined favorable",
+        "variables": "Poverty -10 + Precip +10% + Temp -0.5C + Water +15% + Sanitation +10%",
+        "impact": "Combined decrease"
+      },
+      {
+        "name": "Combined unfavorable",
+        "variables": "Poverty +10 + Precip -20% + Temp +1C",
+        "impact": "Combined increase"
+      }
+    ],
+    "example_androy": {
+      "region": "Androy",
+      "reference_2022": {
+        "Pauvrete_region_2021_pct": 89.6,
+        "Precipitation_annuelle_mm": 779.5,
+        "Acces_eau_potable_pct": 22.1
+      },
+      "message": "A poverty reduction scenario of 10 points in Androy shows measurable impact on all 3 targets."
+    }
+  },
+  "features": {
+    "total": 139,
+    "sources": {
+      "ONN/ENSOMD": "Nutritional targets",
+      "42_meteorological_stations": "Climate & Weather",
+      "BNGRC/EM-DAT": "Cyclones",
+      "INSTAT/World Bank/EPM": "Macroeconomics & Labor market",
+      "INSTAT/RGPH-3": "Demographics",
+      "MINAGRI/FAO": "Agriculture & Food prices",
+      "WHO/UNICEF JMP": "Water & Sanitation",
+      "WHO/UNICEF": "Health & Nutrition",
+      "APIPA": "Hydrology"
+    }
+  }
+}

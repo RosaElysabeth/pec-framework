@@ -1,0 +1,222 @@
+{
+  "meta": {
+    "framework": "PEC - Predict-Explain-Certify",
+    "domaine": "Fintech Afrique de l'Ouest",
+    "domaine_en": "West Africa Fintech",
+    "date": "2026-05-30",
+    "dataset": "dataset_fintech.csv",
+    "observations": 135,
+    "variables": 27,
+    "regions": 15,
+    "train_period": "2016-2021",
+    "test_period": "2022-2024"
+  },
+  "auteurs": {
+    "nom": "Rosa Elysabeth Ralinirina",
+    "orcid": "0009-0003-3048-1765"
+  },
+  "predict": {
+    "Taux_Defaut_pct": {
+      "meilleur_modele": "CatBoost",
+      "R2_test": 0.8518140166632625,
+      "tous_modeles": {
+        "Random_Forest": {
+          "R2": 0.7846856528692601,
+          "RMSE": 1.9738359957153857,
+          "MAE": 1.6073195833333276
+        },
+        "Ridge": {
+          "R2": 0.8096780562300224,
+          "RMSE": 1.8557480475371526,
+          "MAE": 1.5020968378959392
+        },
+        "GradientBoosting": {
+          "R2": 0.7900066950690788,
+          "RMSE": 1.9492938130073798,
+          "MAE": 1.607338074904117
+        },
+        "XGBoost": {
+          "R2": 0.8112914299019265,
+          "RMSE": 1.8478656480009839,
+          "MAE": 1.4506209375593395
+        },
+        "LightGBM": {
+          "R2": 0.7197865011953843,
+          "RMSE": 2.2517444783488934,
+          "MAE": 1.830325764234871
+        },
+        "CatBoost": {
+          "R2": 0.8518140166632625,
+          "RMSE": 1.637488064838207,
+          "MAE": 1.3286296725968327
+        }
+      }
+    },
+    "Ratio_NPL_pct": {
+      "meilleur_modele": "CatBoost",
+      "R2_test": 0.8708463738770383,
+      "tous_modeles": {
+        "Random_Forest": {
+          "R2": 0.841808947789988,
+          "RMSE": 1.6855834980959774,
+          "MAE": 1.4238887222222223
+        },
+        "Ridge": {
+          "R2": 0.8330570398130543,
+          "RMSE": 1.7315832195358647,
+          "MAE": 1.4515129373367999
+        },
+        "GradientBoosting": {
+          "R2": 0.8069365794996244,
+          "RMSE": 1.8621270617791703,
+          "MAE": 1.5994722202678506
+        },
+        "XGBoost": {
+          "R2": 0.8572525404636364,
+          "RMSE": 1.6011923533497936,
+          "MAE": 1.313936080932617
+        },
+        "LightGBM": {
+          "R2": 0.7720330786514278,
+          "RMSE": 2.023462827910371,
+          "MAE": 1.7263453578583978
+        },
+        "CatBoost": {
+          "R2": 0.8708463738770383,
+          "RMSE": 1.5230445799818446,
+          "MAE": 1.2666871277352763
+        }
+      }
+    },
+    "Penetration_Fintech_pct": {
+      "meilleur_modele": "Ridge",
+      "R2_test": 0.9873400646765843,
+      "tous_modeles": {
+        "Random_Forest": {
+          "R2": 0.9672206314046135,
+          "RMSE": 3.0984212747815536,
+          "MAE": 2.4236121296296296
+        },
+        "Ridge": {
+          "R2": 0.9873400646765843,
+          "RMSE": 1.925554953900456,
+          "MAE": 1.5026503839715037
+        },
+        "GradientBoosting": {
+          "R2": 0.9791145161903383,
+          "RMSE": 2.4732182591940117,
+          "MAE": 2.033644129396908
+        },
+        "XGBoost": {
+          "R2": 0.9737312764244591,
+          "RMSE": 2.7737011036738175,
+          "MAE": 2.243009211222331
+        },
+        "LightGBM": {
+          "R2": 0.9225968886844993,
+          "RMSE": 4.76123243087634,
+          "MAE": 3.34919101377296
+        },
+        "CatBoost": {
+          "R2": 0.9530227975809344,
+          "RMSE": 3.709229876112986,
+          "MAE": 2.947538511378365
+        }
+      }
+    }
+  },
+  "explain": {
+    "Taux_Defaut_pct": {
+      "model_utilise": "CatBoost",
+      "top5_SHAP": {
+        "ma3_Ratio_NPL_pct": 0.7578812414554277,
+        "ma3_Taux_Defaut_pct": 0.6532832732558823,
+        "lag1_Taux_Defaut_pct": 0.3655474719450737,
+        "PIB_habitant_USD": 0.2962191795701388,
+        "Indice_reglementation": 0.26853289749978126
+      },
+      "methodes_comparees": {
+        "SHAP_nb_features": 23,
+        "top5": [
+          "ma3_Ratio_NPL_pct",
+          "ma3_Taux_Defaut_pct",
+          "lag1_Taux_Defaut_pct",
+          "PIB_habitant_USD",
+          "Indice_reglementation"
+        ]
+      }
+    },
+    "Ratio_NPL_pct": {
+      "model_utilise": "CatBoost",
+      "top5_SHAP": {
+        "ma3_Ratio_NPL_pct": 0.7668601750016756,
+        "ma3_Taux_Defaut_pct": 0.5702206691286674,
+        "PIB_habitant_USD": 0.3285193439131028,
+        "lag1_Taux_Defaut_pct": 0.30849613914498064,
+        "Fintech_adoption_pct": 0.2846565721953395
+      },
+      "methodes_comparees": {
+        "SHAP_nb_features": 23,
+        "top5": [
+          "ma3_Ratio_NPL_pct",
+          "ma3_Taux_Defaut_pct",
+          "PIB_habitant_USD",
+          "lag1_Taux_Defaut_pct",
+          "Fintech_adoption_pct"
+        ]
+      }
+    },
+    "Penetration_Fintech_pct": {
+      "model_utilise": "Ridge",
+      "top5_SHAP": {
+        "ma3_Penetration_Fintech_pct": 4.448492227103289,
+        "Mobile_money_accounts_par1000": 4.374402423420573,
+        "Annee": 2.5344056909340305,
+        "Penetration_internet_pct": 1.955598420825991,
+        "IDE_millions_USD": 1.8633681107998221
+      },
+      "methodes_comparees": {
+        "SHAP_nb_features": 23,
+        "top5": [
+          "ma3_Penetration_Fintech_pct",
+          "Mobile_money_accounts_par1000",
+          "Annee",
+          "Penetration_internet_pct",
+          "IDE_millions_USD"
+        ]
+      }
+    }
+  },
+  "certify": {
+    "Taux_Defaut_pct": {
+      "model": "CatBoost",
+      "R2_test": 0.8518140166632625,
+      "RMSE": 0.8518140166632625,
+      "certification_score": 87.3938039921433,
+      "performance_score": 85.18140166632625,
+      "stability_score": 84.70033642021448,
+      "grade": "B",
+      "n_bootstrap": 100
+    },
+    "Ratio_NPL_pct": {
+      "model": "CatBoost",
+      "R2_test": 0.8708463738770383,
+      "RMSE": 0.8708463738770383,
+      "certification_score": 88.94100322273854,
+      "performance_score": 87.08463738770384,
+      "stability_score": 86.39818817512321,
+      "grade": "B",
+      "n_bootstrap": 100
+    },
+    "Penetration_Fintech_pct": {
+      "model": "Ridge",
+      "R2_test": 0.9873400646765843,
+      "RMSE": 0.9873400646765843,
+      "certification_score": 98.86982664542295,
+      "performance_score": 98.73400646765843,
+      "stability_score": 98.64614769077895,
+      "grade": "A",
+      "n_bootstrap": 100
+    }
+  }
+}
