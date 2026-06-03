@@ -10,21 +10,42 @@
 import streamlit as st
 
 def pec_url(app):
-    """URL dynamique: localhost en local, secrets en cloud."""
-    local = {'mada': 'http://localhost:8501', 'aide': 'http://localhost:8502',
-             'whatif': 'http://localhost:8503', 'gen': 'http://localhost:8504'}
+    """URL dynamique: lit les URLs depuis les secrets Streamlit, localhost en fallback."""
+    # URLs cloud par défaut (seront remplacées par les secrets si disponible)
+    CLOUD_URLS = {
+        'mada': 'https://pec-mada.streamlit.app',
+        'aide': 'https://pec-aide.streamlit.app',
+        'whatif': 'https://pec-whatif.streamlit.app',
+        'gen': 'https://pec-gen.streamlit.app',
+    }
+    LOCAL_URLS = {
+        'mada': 'http://localhost:8501',
+        'aide': 'http://localhost:8502',
+        'whatif': 'http://localhost:8503',
+        'gen': 'http://localhost:8504',
+    }
     try:
-        # Essai 1: st.secrets['urls']['mada'] (avec section [urls])
+        # Priorité 1: secrets avec section [urls]
         try:
-            cloud = {'mada': st.secrets['urls']['mada'], 'aide': st.secrets['urls']['aide'],
-                     'whatif': st.secrets['urls']['whatif'], 'gen': st.secrets['urls']['gen']}
+            urls = st.secrets['urls']
+            return str(urls[app])
         except Exception:
-            # Essai 2: st.secrets['mada'] (sans section)
-            cloud = {'mada': st.secrets['mada'], 'aide': st.secrets['aide'],
-                     'whatif': st.secrets['whatif'], 'gen': st.secrets['gen']}
-        return cloud.get(app, local.get(app, 'http://localhost:8501'))
+            pass
+        # Priorité 2: secrets plats (sans section)
+        try:
+            return str(st.secrets[app])
+        except Exception:
+            pass
     except Exception:
-        return local.get(app, 'http://localhost:8501')
+        pass
+    # Priorité 3: détecter si on est sur le cloud (URL contient streamlit.app)
+    try:
+        if 'streamlit.app' in st.get_option('server.address') or 'streamlit.app' in str(os.environ.get('STREAMLIT_SERVER_ADDRESS', '')):
+            return CLOUD_URLS.get(app, LOCAL_URLS.get(app, ''))
+    except Exception:
+        pass
+    # Fallback local
+    return LOCAL_URLS.get(app, 'http://localhost:8501')
 
 import pandas as pd
 import numpy as np
