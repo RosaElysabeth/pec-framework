@@ -420,7 +420,7 @@ def makemap(df, tk, lng):
     fig.update_layout(
         geo=dict(scope='africa',center=dict(lat=-19.5,lon=46.5),projection_scale=5,
                  showland=True,landcolor='#e8e8e8',showcountries=True,countrycolor='#cccccc',
-                 showlakes=True,lakecolor='#d4e6f1',coastlinewidth=1,coastcolor='#888888'),
+                 showlakes=True,lakecolor='#d4e6f1',coastlinewidth=1,coastlinecolor='#888888'),
         margin=dict(l=0,r=0,t=40,b=0),height=600,
         title=dict(text=f"{nm} — {fl}",x=0.5,font=dict(size=18,family='Segoe UI')),
         legend=dict(yanchor='top',y=0.99,xanchor='left',x=0.01,font=dict(size=9)))
