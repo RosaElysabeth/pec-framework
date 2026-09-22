@@ -4,6 +4,9 @@
 # ============================================================================
 
 import streamlit as st
+import os
+import json
+import warnings
 
 def pec_url(app):
     """URL dynamique: lit les URLs depuis les secrets Streamlit, localhost en fallback."""
@@ -52,7 +55,7 @@ import plotly.express as px
 st.markdown('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">', unsafe_allow_html=True)
 import plotly.graph_objects as go
 from PIL import Image
-import json, os, warnings, pickle, joblib
+import pickle, joblib
 warnings.filterwarnings('ignore')
 
 # ============================================================================
@@ -408,14 +411,16 @@ def makemap(df, tk, lng):
             la.append(RCOORD[rg]['lat']);lo.append(RCOORD[rg]['lon']);va.append(r[tk]);na.append(rg)
             co.append(region_colors[i % len(region_colors)])
     fig=go.Figure()
-    fig.add_trace(go.Scattermapbox(lat=la,lon=lo,mode='markers+text',
+    fig.add_trace(go.Scattergeo(lat=la,lon=lo,mode='markers+text',
         marker=dict(size=[max(12,v/2.5) for v in va],color=co,opacity=0.9),
-        text=[f"<b>{n}</b><br>{v:.1f}%" for n,v in zip(na,va)],
-        textposition='top right',textfont=dict(size=11,color='#1a2744',family='Segoe UI'),
+        text=[f"{n}: {v:.1f}%" for n,v in zip(na,va)],
+        textposition='top center',textfont=dict(size=10,color='#1a2744'),
         hovertext=[f"<b>{n}</b><br>{fl}: {v:.1f}%" for n,v in zip(na,va)],hoverinfo='text',
         name=nm))
     fig.update_layout(
-        mapbox=dict(style='carto-positron',center=dict(lat=-19.5,lon=46.5),zoom=4.8),
+        geo=dict(scope='africa',center=dict(lat=-19.5,lon=46.5),projection_scale=5,
+                 showland=True,landcolor='#e8e8e8',showcountries=True,countrycolor='#cccccc',
+                 showlakes=True,lakecolor='#d4e6f1',coastlinewidth=1,coastcolor='#888888'),
         margin=dict(l=0,r=0,t=40,b=0),height=600,
         title=dict(text=f"{nm} — {fl}",x=0.5,font=dict(size=18,family='Segoe UI')),
         legend=dict(yanchor='top',y=0.99,xanchor='left',x=0.01,font=dict(size=9)))
