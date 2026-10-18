@@ -13,7 +13,7 @@ def pec_url(app):
     CLOUD_URLS = {
         'mada': 'https://pec-mada.streamlit.app',
         'aide': 'https://pec-aide.streamlit.app',
-        'whatif': 'https://pec-whatif.streamlit.app',
+        'whatif': 'https://pec-what.streamlit.app',
         'gen': 'https://pec-gen.streamlit.app',
     }
     LOCAL_URLS = {
