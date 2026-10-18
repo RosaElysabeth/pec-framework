@@ -1,8 +1,8 @@
 # ============================================================================
-# PEC FRAMEWORK — What-Ifgascar
+# PEC FRAMEWORK — What-If | Madagascar
 # Auteur : Rosa Elysabeth Ralinirina | ORCID : 0009-0003-3048-1765
 # ============================================================================
-# PREDICT — EXPLAIN — CERTIFY : cas d'�tude Madagascar
+# PREDICT — EXPLAIN — CERTIFY : cas d'étude Madagascar
 # ============================================================================
 
 import streamlit as st
@@ -36,9 +36,16 @@ def pec_url(app):
             pass
     except Exception:
         pass
-    # Priorité 3: détecter si on est sur le cloud (URL contient streamlit.app)
+    # Priorité 3: hébergeur courant — st.context.headers['Host'] (Streamlit >= 1.37).
+    # Sur Streamlit Cloud, Host vaut p.ex. 'pec-mada.streamlit.app' ; en local, 'localhost:8501'.
     try:
-        if 'streamlit.app' in st.get_option('server.address') or 'streamlit.app' in str(os.environ.get('STREAMLIT_SERVER_ADDRESS', '')):
+        if 'streamlit.app' in str(st.context.headers.get('Host', '')):
+            return CLOUD_URLS.get(app, LOCAL_URLS.get(app, ''))
+    except Exception:
+        pass  # st.context indisponible (anciennes versions de Streamlit)
+    # Priorité 4: recours aux options/environ (déploiements personnalisés)
+    try:
+        if 'streamlit.app' in str(st.get_option('server.address') or '') or 'streamlit.app' in str(os.environ.get('STREAMLIT_SERVER_ADDRESS', '')):
             return CLOUD_URLS.get(app, LOCAL_URLS.get(app, ''))
     except Exception:
         pass
