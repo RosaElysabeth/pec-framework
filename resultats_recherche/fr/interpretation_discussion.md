@@ -126,7 +126,7 @@ La plateforme What-If permet de simuler **8 scénarios prospectifs** pour chaque
 **Exemple — Androy (référence 2022) :**
 - Pauvreté : 89.6% | Précipitations : 779.5mm | Accès eau : 22.1%
 - Un scénario de réduction de pauvreté (-10 pts) montre l'impact mesurable sur les 3 cibles nutritionnelles
-- Les métriques d'impact (✅ favorable / ⚠️ défavorable / ↔️ marginal) guident la décision
+- Les métriques d'impact (favorable / défavorable / marginal) guident la décision
 
 ---
 

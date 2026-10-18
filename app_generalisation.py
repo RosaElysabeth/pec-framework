@@ -58,7 +58,7 @@ warnings.filterwarnings('ignore')
 
 st.set_page_config(
     page_title="PEC Généralisation | Multi-Domaines",
-    page_icon="🌍",
+    page_icon=None,
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -103,7 +103,6 @@ DOMAINES = {
         'nom_en': 'Climate — Southeast Asia',
         'icone': 'fa-cloud-bolt',
         'couleur': '#2e86c1',
-        'emoji': '🌏',
         'fichier': 'dataset_climat.csv',
         'zone_col': 'Zone',
         'annee_col': 'Annee',
@@ -128,7 +127,6 @@ DOMAINES = {
         'nom_en': 'Fintech — West Africa',
         'icone': 'fa-coins',
         'couleur': '#f39c12',
-        'emoji': '🏦',
         'fichier': 'dataset_fintech.csv',
         'zone_col': 'Pays',
         'annee_col': 'Annee',
@@ -153,7 +151,6 @@ DOMAINES = {
         'nom_en': 'Health — East Africa',
         'icone': 'fa-heart-pulse',
         'couleur': '#27ae60',
-        'emoji': '🏥',
         'fichier': 'dataset_sante.csv',
         'zone_col': 'Province',
         'annee_col': 'Annee',
@@ -249,23 +246,20 @@ def load_image(path):
         return Image.open(path)
     return None
 
-# ============================================================================
-# SIDEBAR — UNIFORME AVEC LES 3 AUTRES PLATEFORMES
-# ============================================================================
 with st.sidebar:
-    lang = st.radio('🌐', ['fr','en'], format_func=lambda x: 'Français' if x=='fr' else 'English', horizontal=True, key='lg')
+    lang = st.radio('', ['fr','en'], format_func=lambda x: 'Français' if x=='fr' else 'English', horizontal=True, label_visibility='collapsed', key='lg')
     is_fr = lang == 'fr'
     st.divider()
 
     # Navigation inter-plateformes — IDENTIQUE aux 3 autres apps
     st.divider()
-    st.markdown(f'#### 🔗 {"Plateformes PEC" if is_fr else "PEC Platforms"}')
+    st.markdown(f'#### {"Plateformes PEC" if is_fr else "PEC Platforms"}')
     c1, c2 = st.columns(2)
-    with c1: st.link_button(f'📊 {"PEC Mada" if is_fr else "PEC Mada"}', pec_url('mada'), use_container_width=True)
-    with c2: st.link_button(f'📊 {"PEC Aide" if is_fr else "PEC Aid"}', pec_url('aide'), use_container_width=True)
+    with c1: st.link_button(f'{"PEC Mada" if is_fr else "PEC Mada"}', pec_url('mada'), use_container_width=True)
+    with c2: st.link_button(f'{"PEC Aide" if is_fr else "PEC Aid"}', pec_url('aide'), use_container_width=True)
     c3, c4 = st.columns(2)
-    with c3: st.link_button(f'🔬 {"PEC What" if is_fr else "PEC What"}', pec_url('whatif'), use_container_width=True)
-    with c4: st.link_button(f'🌍 {"PEC Gen" if is_fr else "PEC Gen"}', pec_url('gen'), use_container_width=True)
+    with c3: st.link_button(f'{"PEC What" if is_fr else "PEC What"}', pec_url('whatif'), use_container_width=True)
+    with c4: st.link_button(f'{"PEC Gen" if is_fr else "PEC Gen"}', pec_url('gen'), use_container_width=True)
     st.divider()
 
     st.markdown(f"**{'Auteur' if is_fr else 'Author'}**")
@@ -275,7 +269,7 @@ with st.sidebar:
     domaine_choisi = st.selectbox(
         "Domaine" if is_fr else "Domain",
         list(DOMAINES.keys()),
-        format_func=lambda k: f"{DOMAINES[k]['emoji']} {DOMAINES[k]['nom_fr'] if is_fr else DOMAINES[k]['nom_en']}"
+        format_func=lambda k: f"{DOMAINES[k]['nom_fr'] if is_fr else DOMAINES[k]['nom_en']}"
     )
     st.divider()
 
@@ -320,7 +314,7 @@ st.markdown(f"""
 # TABS
 tabs = st.tabs(["Vue d'ensemble" if is_fr else "Overview", "PREDICT", "EXPLAIN", "CERTIFY", "À propos" if is_fr else "About"])
 with tabs[0]:
-    st.markdown(f"<h2 class='st'>{'📊 Vue d\'ensemble — 3 Domaines' if is_fr else '📊 Overview — 3 Domains'}</h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 class='st'>{'Vue d\'ensemble — 3 Domaines' if is_fr else 'Overview — 3 Domains'}</h2>", unsafe_allow_html=True)
 
     cols = st.columns(3)
     for idx, (dkey, dinfo) in enumerate(DOMAINES.items()):
@@ -334,7 +328,7 @@ with tabs[0]:
 
             st.markdown(f"""
             <div class="pec-card" style="border-left:5px solid {dinfo['couleur']}; text-align:center">
-                <h3 style="color:{dinfo['couleur']}">{dinfo['emoji']} {dinfo['nom_fr'] if is_fr else dinfo['nom_en']}</h3>
+                <h3 style="color:{dinfo['couleur']}">{dinfo['nom_fr'] if is_fr else dinfo['nom_en']}</h3>
                 <p style="font-size:2rem; font-weight:800; color:{dinfo['couleur']}">{n_A}A + {n_B}B</p>
                 <p style="font-size:0.9rem; color:#6b7280">
                     {rp['meta']['observations']} {'obs' if is_fr else 'obs'} | 
@@ -345,7 +339,7 @@ with tabs[0]:
             """, unsafe_allow_html=True)
 
     # Tableau comparatif
-    st.markdown(f"<h2 class='st'>{'📋 Résultats comparatifs' if is_fr else '📋 Comparative Results'}</h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 class='st'>{'Résultats comparatifs' if is_fr else 'Comparative Results'}</h2>", unsafe_allow_html=True)
 
     rows = []
     for dkey, dinfo in DOMAINES.items():
@@ -383,7 +377,7 @@ with tabs[0]:
 # PREDICT
 # ============================================================================
 with tabs[1]:
-    st.markdown(f"<h2 class='st'>{'📈 PREDICT — ' if is_fr else '📈 PREDICT — '}{dom['nom_fr'] if is_fr else dom['nom_en']}</h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 class='st'>{'PREDICT — ' if is_fr else 'PREDICT — '}{dom['nom_fr'] if is_fr else dom['nom_en']}</h2>", unsafe_allow_html=True)
 
     # KPIs
     cols_kpi = st.columns(len(dom['cibles']))
@@ -434,7 +428,7 @@ with tabs[1]:
 # EXPLAIN
 # ============================================================================
 with tabs[2]:
-    st.markdown(f"<h2 class='st'>{'🔬 EXPLAIN — ' if is_fr else '🔬 EXPLAIN — '}{dom['nom_fr'] if is_fr else dom['nom_en']}</h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 class='st'>{'EXPLAIN — ' if is_fr else 'EXPLAIN — '}{dom['nom_fr'] if is_fr else dom['nom_en']}</h2>", unsafe_allow_html=True)
 
     st.markdown(f"""
     <div class="pec-card card-explain">
@@ -489,7 +483,7 @@ with tabs[2]:
 # CERTIFY
 # ============================================================================
 with tabs[3]:
-    st.markdown(f"<h2 class='st'>{'✅ CERTIFY — ' if is_fr else '✅ CERTIFY — '}{dom['nom_fr'] if is_fr else dom['nom_en']}</h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 class='st'>{'CERTIFY — ' if is_fr else 'CERTIFY — '}{dom['nom_fr'] if is_fr else dom['nom_en']}</h2>", unsafe_allow_html=True)
 
     # Adaptation du domaine
     cert_adapt_key = 'adaptation_certification_fr' if is_fr else 'adaptation_certification_en'

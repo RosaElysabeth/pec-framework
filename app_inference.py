@@ -304,13 +304,13 @@ with st.sidebar:
 
     # Navigation inter-plateformes
     st.divider()
-    st.markdown('#### 🔗 Plateformes PEC')
+    st.markdown('#### Plateformes PEC')
     c1, c2 = st.columns(2)
-    with c1: st.link_button(f'📊 {t("nav_mada")}', pec_url('mada'), use_container_width=True)
-    with c2: st.link_button(f'📊 {t("nav_aide")}', pec_url('aide'), use_container_width=True)
+    with c1: st.link_button(f'{t("nav_mada")}', pec_url('mada'), use_container_width=True)
+    with c2: st.link_button(f'{t("nav_aide")}', pec_url('aide'), use_container_width=True)
     c3, c4 = st.columns(2)
-    with c3: st.link_button(f'🔬 {t("nav_what")}', pec_url('whatif'), use_container_width=True)
-    with c4: st.link_button(f'🌍 {t("nav_gen")}', pec_url('gen'), use_container_width=True)
+    with c3: st.link_button(f'{t("nav_what")}', pec_url('whatif'), use_container_width=True)
+    with c4: st.link_button(f'{t("nav_gen")}', pec_url('gen'), use_container_width=True)
     st.markdown(f"### <i class='fa-solid fa-flask'></i> PEC What-If", unsafe_allow_html=True)
     st.caption(t('app_subtitle'))
     st.divider()
@@ -758,14 +758,6 @@ def _get_scenario_vars(si, lang):
     return si_map.get(si, si_map[0]).get(lang, si_map[0]['fr'])
 
 
-def _get_scenario_impact(si, diff):
-    """Return (emoji, color) for scenario impact."""
-    if si == 0: return '\u2194', '#6b7280'
-    if diff < -0.5: return '\u2705', '#27ae60'
-    elif diff > 0.5: return '\u26a0\ufe0f', '#e74c3c'
-    else: return '\u2194', '#f39c12'
-
-
 # SCENARIOS
 # ============================================================================
 with tab_scenarios:
@@ -777,9 +769,9 @@ with tab_scenarios:
     st.caption(f'{t("scenario_desc")} \u2014 {info[lang]}')
 
     if lang == 'fr':
-        st.markdown('<div class="interp-box"><strong><i class="fa-solid fa-circle-question"></i> Que sont les sc\u00e9narios ?</strong><br>Les sc\u00e9narios simulent <strong>\u00ab et si ? \u00bb</strong> \u2014 que se passerait-il si certaines variables changeaient ?<br><em>Exemple :</em> \u00ab Et si la pauvret\u00e9 diminuait de 10 points \u00e0 Androy ? \u00bb<br>Cela permet aux d\u00e9cideurs de <strong>mesurer l&#39;impact concret</strong> d&#39;une politique avant sa mise en \u0153uvre.<br><small>\u2139\ufe0f Le mod\u00e8le pr\u00e9dit les 3 cibles nutritionnelles en modifiant les variables <strong>r\u00e9gionales r\u00e9elles</strong> du dataset (pauvret\u00e9 2021/estim\u00e9e, eau, assainissement, climat).</small></div>', unsafe_allow_html=True)
+        st.markdown('<div class="interp-box"><strong><i class="fa-solid fa-circle-question"></i> Que sont les sc\u00e9narios ?</strong><br>Les sc\u00e9narios simulent <strong>\u00ab et si ? \u00bb</strong> \u2014 que se passerait-il si certaines variables changeaient ?<br><em>Exemple :</em> \u00ab Et si la pauvret\u00e9 diminuait de 10 points \u00e0 Androy ? \u00bb<br>Cela permet aux d\u00e9cideurs de <strong>mesurer l&#39;impact concret</strong> d&#39;une politique avant sa mise en \u0153uvre.<br><small>Le mod\u00e8le pr\u00e9dit les 3 cibles nutritionnelles en modifiant les variables <strong>r\u00e9gionales r\u00e9elles</strong> du dataset (pauvret\u00e9 2021/estim\u00e9e, eau, assainissement, climat).</small></div>', unsafe_allow_html=True)
     else:
-        st.markdown('<div class="interp-box"><strong><i class="fa-solid fa-circle-question"></i> What are scenarios?</strong><br>Scenarios simulate <strong>"what if?"</strong> \u2014 what would happen if certain variables changed?<br><em>Example:</em> "What if poverty decreased by 10 points in Androy?"<br>This allows decision-makers to <strong>measure the concrete impact</strong> of a policy before implementing it.<br><small>\u2139\ufe0f The model predicts 3 nutritional targets by modifying <strong>actual regional</strong> variables from the dataset (poverty 2021/estimated, water, sanitation, climate).</small></div>', unsafe_allow_html=True)
+        st.markdown('<div class="interp-box"><strong><i class="fa-solid fa-circle-question"></i> What are scenarios?</strong><br>Scenarios simulate <strong>"what if?"</strong> \u2014 what would happen if certain variables changed?<br><em>Example:</em> "What if poverty decreased by 10 points in Androy?"<br>This allows decision-makers to <strong>measure the concrete impact</strong> of a policy before implementing it.<br><small>The model predicts 3 nutritional targets by modifying <strong>actual regional</strong> variables from the dataset (poverty 2021/estimated, water, sanitation, climate).</small></div>', unsafe_allow_html=True)
 
     c1, c2 = st.columns(2)
     with c1:
@@ -901,9 +893,8 @@ with tab_scenarios:
                     last_sc = df_fut[pred_key].iloc[-1]
                     last_sq = df_sq[pred_key].iloc[-1]
                     diff = last_sc - last_sq
-                    emoji_m, _ = _get_scenario_impact(si, diff)
                     with imp_cols[i]:
-                        st.metric(tinfo[lang], f"{last_sc:.1f}%", f"{diff:+.1f}pp {'vs statu quo' if lang=='fr' else 'vs status quo'} {emoji_m}")
+                        st.metric(tinfo[lang], f"{last_sc:.1f}%", f"{diff:+.1f}pp {'vs statu quo' if lang=='fr' else 'vs status quo'}")
 
         # Results table with readable column names
         cols_display = ['Annee', 'Region'] + [f'{TARGETS[tk]["short"]}_pred' for tk in meta['targets'] if f'{TARGETS[tk]["short"]}_pred' in df_fut.columns]

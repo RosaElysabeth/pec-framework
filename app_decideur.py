@@ -175,13 +175,13 @@ with st.sidebar:
 
     # Navigation inter-plateformes
     st.divider()
-    st.markdown(f'#### 🔗 Plateformes PEC')
+    st.markdown(f'#### Plateformes PEC')
     c1, c2 = st.columns(2)
-    with c1: st.link_button(f'📊 {t("nav_mada")}', pec_url('mada'), use_container_width=True)
-    with c2: st.link_button(f'📊 {t("nav_aide")}', pec_url('aide'), use_container_width=True)
+    with c1: st.link_button(f'{t("nav_mada")}', pec_url('mada'), use_container_width=True)
+    with c2: st.link_button(f'{t("nav_aide")}', pec_url('aide'), use_container_width=True)
     c3, c4 = st.columns(2)
-    with c3: st.link_button(f'🔬 {t("nav_what")}', pec_url('whatif'), use_container_width=True)
-    with c4: st.link_button(f'🌍 {t("nav_gen")}', pec_url('gen'), use_container_width=True)
+    with c3: st.link_button(f'{t("nav_what")}', pec_url('whatif'), use_container_width=True)
+    with c4: st.link_button(f'{t("nav_gen")}', pec_url('gen'), use_container_width=True)
     st.markdown(f"### <i class='fa-solid fa-flask-vial'></i> PEC G\u00e9n\u00e9ralis\u00e9", unsafe_allow_html=True)
     st.caption(t('app_subtitle'))
     st.divider()
@@ -338,7 +338,7 @@ with tab_demo:
 
                 st.session_state.results = results
                 st.session_state.dataset = tgt
-                st.success(f"\u2705 PEC termin\u00e9 pour {len(results)} cible(s) !" if lang=='fr' else f"\u2705 PEC completed for {len(results)} target(s)!")
+                st.success(f"PEC termin\u00e9 pour {len(results)} cible(s) !" if lang=='fr' else f"PEC completed for {len(results)} target(s)!")
                 st.rerun()
     else:
         st.error(f"File not found: {demo_path}")
@@ -357,11 +357,11 @@ with tab_upload:
     if uploaded is not None:
         try:
             df_up = pd.read_csv(uploaded)
-            st.success(f"\u2705 {len(df_up)} lignes \u00d7 {len(df_up.columns)} colonnes")
+            st.success(f"{len(df_up)} lignes \u00d7 {len(df_up.columns)} colonnes")
             st.dataframe(df_up.head(15), use_container_width=True, hide_index=True)
 
             numeric_cols = df_up.select_dtypes(include=[np.number]).columns.tolist()
-            st.info(f"\U0001f4ca {t('col_count')}: {len(numeric_cols)}")
+            st.info(f"{t('col_count')}: {len(numeric_cols)}")
 
             if len(numeric_cols) >= 2:
                 target_cols = st.multiselect(t('target_sel'), numeric_cols, default=numeric_cols[-1:], key='upload_targets3')
@@ -441,7 +441,7 @@ with tab_upload:
 
                         st.session_state.results = results
                         st.session_state.dataset = f'upload_{len(df_up)}'
-                        st.success(f"\u2705 PEC termin\u00e9 pour {len(results)} cible(s) !")
+                        st.success(f"PEC termin\u00e9 pour {len(results)} cible(s) !")
                         st.rerun()
         except Exception as e:
             st.error(f"Erreur : {e}")

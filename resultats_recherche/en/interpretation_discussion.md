@@ -126,7 +126,7 @@ The What-If platform simulates **8 prospective scenarios** for each region and h
 **Example — Androy (reference 2022):**
 - Poverty: 89.6% | Rainfall: 779.5mm | Water access: 22.1%
 - A poverty reduction scenario (-10 pts) shows measurable impact on all 3 nutritional targets
-- Impact metrics (✅ favorable / ⚠️ unfavorable / ↔️ marginal) guide decision-making
+- Impact metrics (favorable / unfavorable / marginal) guide decision-making
 
 ---
 

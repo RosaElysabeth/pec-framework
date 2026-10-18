@@ -434,13 +434,13 @@ with st.sidebar:
     st.divider()
     # Navigation inter-plateformes
     st.divider()
-    st.markdown(f'#### 🔗 {t("nav_platforms") if "nav_platforms" in T[st.session_state.lang] else "Plateformes PEC"}')
+    st.markdown(f'#### {t("nav_platforms") if "nav_platforms" in T[st.session_state.lang] else "Plateformes PEC"}')
     c1, c2 = st.columns(2)
-    with c1: st.link_button(f'📊 {t("nav_mada")}', pec_url('mada'), use_container_width=True)
-    with c2: st.link_button(f'📊 {t("nav_aide")}', pec_url('aide'), use_container_width=True)
+    with c1: st.link_button(f'{t("nav_mada")}', pec_url('mada'), use_container_width=True)
+    with c2: st.link_button(f'{t("nav_aide")}', pec_url('aide'), use_container_width=True)
     c3, c4 = st.columns(2)
-    with c3: st.link_button(f'🔬 {t("nav_what")}', pec_url('whatif'), use_container_width=True)
-    with c4: st.link_button(f'🌍 {t("nav_gen")}', pec_url('gen'), use_container_width=True)
+    with c3: st.link_button(f'{t("nav_what")}', pec_url('whatif'), use_container_width=True)
+    with c4: st.link_button(f'{t("nav_gen")}', pec_url('gen'), use_container_width=True)
     st.markdown(f"**{t('author')}**")
     oid=t('orcid')
     st.markdown(f'<a href="https://orcid.org/{oid}" target="_blank" style="text-decoration:none;display:inline-flex;align-items:center;gap:4px;font-size:.9rem;color:#a6ce39;"><img src="https://orcid.org/assets/vectors/orcid.logo.icon.svg" width="16" height="16" alt="ORCID" style="vertical-align:middle;"/> orcid.org/{oid}</a>',unsafe_allow_html=True)
@@ -572,31 +572,31 @@ with tov:
             for k, v in dd[cat].items(): col_desc[k] = v
     if lang == 'fr':
         col_groups = [
-            ('🎯 Cibles nutritionnelles — ONN/ENSOMD', ['Region','Annee'] + [c for c in TARGETS if c in all_cols]),
-            ('🌡 Climat & Météo — 42 stations météorologiques', [c for c in all_cols if any(k in c for k in ['Temp','Precip','Humid','Vent','Press','Couverture','UV','Ensoleillement','Nb_jours','saison_cyclonique','saison_seche'])]),
-            ('🌪 Cyclones — BNGRC/EM-DAT', [c for c in all_cols if c.startswith('Cycl_')]),
-            ('📈 Macroéconomie & Marché du travail — INSTAT/Banque Mondiale/EPM', [c for c in all_cols if any(k in c for k in ['Croissance_PIB','Inflation','Chomage','Pauvrete','PIB_Agriculture','Part_Agriculture','GDP_per_capita','Stabilite_politique','Prod_alimentaire','Sous_emploi'])]),
-            ('👥 Démographie — INSTAT/RGPH-3', [c for c in all_cols if any(k in c for k in ['Pop_','Superficie','Densite','Source_enquete']) and not c.startswith('R_')]),
-            ('🌾 Agriculture & Prix alimentation — MINAGRI/FAO', [c for c in all_cols if any(k in c for k in ['Production_riz','Production_cafe','Import_miel','Export_miel','Mais_','Manioc_','Riz_','Kcal_','Cout_'])]),
-            ('💧 Eau & Assainissement — WHO/UNICEF JMP', [c for c in all_cols if any(k in c for k in ['Acces_eau','Assainissement','FAO_acces','FAO_assainissement','FAO_eau'])]),
-            ('🏥 Santé & Nutrition — OMS/UNICEF', [c for c in all_cols if any(k in c for k in ['Alpha_t','Scolarisation','Couverture_sanitaire','Vaccination','Anemie','Allaitement','Faible_poids','Nb_enfants','Nb_nouveau','FAO_stunted','FAO_wasting','Food_supply','Besoins_energ','CV_consom','Pertes_cal','Densite_ferree'])]),
-            ('🌊 Hydrologie — APIPA', [c for c in all_cols if any(k in c for k in ['Pluie_APIPA','Debit_'])]),
-            ('🔢 Variables calculées & Dérivées', [c for c in all_cols if any(k in c for k in ['lag1','delta','ma3','moy_region','std_region','Stress_thermique','Amplitude_thermique','Indice_vuln','Annee_sin','Annee_cos'])]),
-            ('🏢 Dummies régionaux (22 régions)', [c for c in all_cols if c.startswith('R_')]),
+            ('Cibles nutritionnelles — ONN/ENSOMD', ['Region','Annee'] + [c for c in TARGETS if c in all_cols]),
+            ('Climat & Météo — 42 stations météorologiques', [c for c in all_cols if any(k in c for k in ['Temp','Precip','Humid','Vent','Press','Couverture','UV','Ensoleillement','Nb_jours','saison_cyclonique','saison_seche'])]),
+            ('Cyclones — BNGRC/EM-DAT', [c for c in all_cols if c.startswith('Cycl_')]),
+            ('Macroéconomie & Marché du travail — INSTAT/Banque Mondiale/EPM', [c for c in all_cols if any(k in c for k in ['Croissance_PIB','Inflation','Chomage','Pauvrete','PIB_Agriculture','Part_Agriculture','GDP_per_capita','Stabilite_politique','Prod_alimentaire','Sous_emploi'])]),
+            ('Démographie — INSTAT/RGPH-3', [c for c in all_cols if any(k in c for k in ['Pop_','Superficie','Densite','Source_enquete']) and not c.startswith('R_')]),
+            ('Agriculture & Prix alimentation — MINAGRI/FAO', [c for c in all_cols if any(k in c for k in ['Production_riz','Production_cafe','Import_miel','Export_miel','Mais_','Manioc_','Riz_','Kcal_','Cout_'])]),
+            ('Eau & Assainissement — WHO/UNICEF JMP', [c for c in all_cols if any(k in c for k in ['Acces_eau','Assainissement','FAO_acces','FAO_assainissement','FAO_eau'])]),
+            ('Santé & Nutrition — OMS/UNICEF', [c for c in all_cols if any(k in c for k in ['Alpha_t','Scolarisation','Couverture_sanitaire','Vaccination','Anemie','Allaitement','Faible_poids','Nb_enfants','Nb_nouveau','FAO_stunted','FAO_wasting','Food_supply','Besoins_energ','CV_consom','Pertes_cal','Densite_ferree'])]),
+            ('Hydrologie — APIPA', [c for c in all_cols if any(k in c for k in ['Pluie_APIPA','Debit_'])]),
+            ('Variables calculées & Dérivées', [c for c in all_cols if any(k in c for k in ['lag1','delta','ma3','moy_region','std_region','Stress_thermique','Amplitude_thermique','Indice_vuln','Annee_sin','Annee_cos'])]),
+            ('Dummies régionaux (22 régions)', [c for c in all_cols if c.startswith('R_')]),
         ]
     else:
         col_groups = [
-            ('🎯 Nutritional targets — ONN/ENSOMD', ['Region','Annee'] + [c for c in TARGETS if c in all_cols]),
-            ('🌡 Climate & Weather — 42 meteorological stations', [c for c in all_cols if any(k in c for k in ['Temp','Precip','Humid','Vent','Press','Couverture','UV','Ensoleillement','Nb_jours','saison_cyclonique','saison_seche'])]),
-            ('🌪 Cyclones — BNGRC/EM-DAT', [c for c in all_cols if c.startswith('Cycl_')]),
-            ('📈 Macroeconomics & Labor market — INSTAT/World Bank/EPM', [c for c in all_cols if any(k in c for k in ['Croissance_PIB','Inflation','Chomage','Pauvrete','PIB_Agriculture','Part_Agriculture','GDP_per_capita','Stabilite_politique','Prod_alimentaire','Sous_emploi'])]),
-            ('👥 Demographics — INSTAT/RGPH-3', [c for c in all_cols if any(k in c for k in ['Pop_','Superficie','Densite','Source_enquete']) and not c.startswith('R_')]),
-            ('🌾 Agriculture & Food prices — MINAGRI/FAO', [c for c in all_cols if any(k in c for k in ['Production_riz','Production_cafe','Import_miel','Export_miel','Mais_','Manioc_','Riz_','Kcal_','Cout_'])]),
-            ('💧 Water & Sanitation — WHO/UNICEF JMP', [c for c in all_cols if any(k in c for k in ['Acces_eau','Assainissement','FAO_acces','FAO_assainissement','FAO_eau'])]),
-            ('🏥 Health & Nutrition — WHO/UNICEF', [c for c in all_cols if any(k in c for k in ['Alpha_t','Scolarisation','Couverture_sanitaire','Vaccination','Anemie','Allaitement','Faible_poids','Nb_enfants','Nb_nouveau','FAO_stunted','FAO_wasting','Food_supply','Besoins_energ','CV_consom','Pertes_cal','Densite_ferree'])]),
-            ('🌊 Hydrology — APIPA', [c for c in all_cols if any(k in c for k in ['Pluie_APIPA','Debit_'])]),
-            ('🔢 Computed & derived features', [c for c in all_cols if any(k in c for k in ['lag1','delta','ma3','moy_region','std_region','Stress_thermique','Amplitude_thermique','Indice_vuln','Annee_sin','Annee_cos'])]),
-            ('🏢 Regional dummies (22 regions)', [c for c in all_cols if c.startswith('R_')]),
+            ('Nutritional targets — ONN/ENSOMD', ['Region','Annee'] + [c for c in TARGETS if c in all_cols]),
+            ('Climate & Weather — 42 meteorological stations', [c for c in all_cols if any(k in c for k in ['Temp','Precip','Humid','Vent','Press','Couverture','UV','Ensoleillement','Nb_jours','saison_cyclonique','saison_seche'])]),
+            ('Cyclones — BNGRC/EM-DAT', [c for c in all_cols if c.startswith('Cycl_')]),
+            ('Macroeconomics & Labor market — INSTAT/World Bank/EPM', [c for c in all_cols if any(k in c for k in ['Croissance_PIB','Inflation','Chomage','Pauvrete','PIB_Agriculture','Part_Agriculture','GDP_per_capita','Stabilite_politique','Prod_alimentaire','Sous_emploi'])]),
+            ('Demographics — INSTAT/RGPH-3', [c for c in all_cols if any(k in c for k in ['Pop_','Superficie','Densite','Source_enquete']) and not c.startswith('R_')]),
+            ('Agriculture & Food prices — MINAGRI/FAO', [c for c in all_cols if any(k in c for k in ['Production_riz','Production_cafe','Import_miel','Export_miel','Mais_','Manioc_','Riz_','Kcal_','Cout_'])]),
+            ('Water & Sanitation — WHO/UNICEF JMP', [c for c in all_cols if any(k in c for k in ['Acces_eau','Assainissement','FAO_acces','FAO_assainissement','FAO_eau'])]),
+            ('Health & Nutrition — WHO/UNICEF', [c for c in all_cols if any(k in c for k in ['Alpha_t','Scolarisation','Couverture_sanitaire','Vaccination','Anemie','Allaitement','Faible_poids','Nb_enfants','Nb_nouveau','FAO_stunted','FAO_wasting','Food_supply','Besoins_energ','CV_consom','Pertes_cal','Densite_ferree'])]),
+            ('Hydrology — APIPA', [c for c in all_cols if any(k in c for k in ['Pluie_APIPA','Debit_'])]),
+            ('Computed & derived features', [c for c in all_cols if any(k in c for k in ['lag1','delta','ma3','moy_region','std_region','Stress_thermique','Amplitude_thermique','Indice_vuln','Annee_sin','Annee_cos'])]),
+            ('Regional dummies (22 regions)', [c for c in all_cols if c.startswith('R_')]),
         ]
     
     for gname, gcols in col_groups:
@@ -612,7 +612,7 @@ with tov:
         with st.expander(f"{gname} ({len(gcols)})"):
             st.dataframe(_cat_df, use_container_width=True, hide_index=True)
     # Dictionnaire complet
-    with st.expander('📖 ' + ('Dictionnaire des variables' if lang=='fr' else 'Data dictionary')):
+    with st.expander(('Dictionnaire des variables' if lang=='fr' else 'Data dictionary')):
         dict_data = []
         for cat_key, cat_dict in dd.items():
             if isinstance(cat_dict, dict):
@@ -622,7 +622,7 @@ with tov:
         if dict_data:
             st.dataframe(pd.DataFrame(dict_data), use_container_width=True, hide_index=True)
     # Aperçu complet
-    with st.expander('📊 ' + ('Aperçu complet (toutes les colonnes)' if lang=='fr' else 'Full preview (all columns)')):
+    with st.expander(('Aperçu complet (toutes les colonnes)' if lang=='fr' else 'Full preview (all columns)')):
         st.dataframe(df.head(5), use_container_width=True, hide_index=True)
     ib(dyn_interp(tk, 'key'))
     with st.expander(t('correlation_matrix')):
